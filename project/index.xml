@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects | Carlos Quintero-Peña</title>
+    <link>/project/</link>
+      <atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
+    <description>Projects</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Projects</title>
+      <link>/project/</link>
+    </image>
+    
+    <item>
+      <title>Can Theoretical Algorithms Efficiently Escape Saddle Points in Deep Learning?</title>
+      <link>/project/example/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>/project/example/</guid>
+      <description>&lt;p&gt;This project provides a literature review for the most important recent works related to optimizing high-dimensional non-convex functions in the presence of saddle points mostly for machine learning applications.&lt;/p&gt;
+&lt;p&gt;The inspiration came from reviewing the paper &amp;ldquo;How to Escape Saddle Points Efficiently?&amp;rdquo;. A large research effort has been devoted to proposed methods that can converge to second order stationary points efficiently. Of special interest is the set of methods that do not rely on Hessian computation, mainly driven by applications in machine learning where this may not be feasible. Although, many important theoretical results have been proposed, many of them have not be tested in real experiments, especially in the context of training a deep neural network. We have designed experiments with different network architectures and state-of-the-art datasets to observe the behavior of perturbed versions of gradient descent. Initial results show that an improvement in experimental convergence rate can be seen only for small and shallow networks.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Motion Planning with incomplete scene information</title>
+      <link>/project/incomplete-sensing/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>/project/incomplete-sensing/</guid>
+      <description>&lt;p&gt;The objective of the project is to simulate the Fetch robot in a realistic environment considering uncertainty. In order to accomplish this we needed to take into account the complexity of a real robotic platform, starting with the topics covered during the course, i.e., kinematics, dynamics, control, but also others that were either briefly discussed or not at all, such as sensing, localization, motion planning, etc. Instead of building or analyzing all of these from scratch for the Fetch robot, we used a large software stack based on ROS (Robot Operating System). In the project, all of these were integrated in order to solve the problem of successfully planning and executing a grasping task in the presence of uncertain obstacles. The following are the main software components of the solution and a brief description of what was done in this project with each one:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Gazebo:&lt;/strong&gt; It is the physics simulator where the world and robot are modeled. For the project I created the testing scenes by creating first objects (cylinders in this case) that represent cans and wooden tables. Each graspable object required a grasping pose that the robot knows beforehand that is used to compute the goal configuration for every can. The poses in ROS are represented as a $3D$ vector that represents the position and a $4D$ vector that represents its orientation as a quaternion. The figure below shows an example of one Gazebo scene&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;tf2:&lt;/strong&gt; It is a ROS package that provided all the transformations between the different frames in the world. The robot geometry is already known for the the package and the transformations are given as abstract objects that can be operated as we operate transformation matrices. We used these transformations to compute the frame origins of the robot&amp;rsquo;s links that were part of the planned trajectory&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;MoveIt:&lt;/strong&gt; It is a ROS package that provides access to a set of sampling-based planners available in OMPL. Plans are represented as a sequence of robot states (joint configurations) that are created from the group of joints that is used to plan. For this project we created a group for the 7 arm joints and the torso and therefore, each state could be represented as an 8-dimensional vector. This package also provides controller functions for executing the planned trajectories. The trajectory was required to be time-parameterized before passing it to the controller. The controller also provides a way to receive feedback on whether the given trajectory was successfully executed or not. This was required for the experiments&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Octomap:&lt;/strong&gt; It is a library that efficiently stores and manages data that comes from cloud points such as those captured with a RGB-D camera. The octomap represents the world by classifying parts of the space as free, mixed (free/occupied) or unknown. It creates boxes and each box is labeled as one of the possibilities. If the box is empty it stores it with a large resolution, if the box is mixed, it further split it into smaller boxes and it keeps doing that until all are free or occupied or a resolution limit is reached. It was used in this project to represent the scenes. In the experiments, we used a query function to know whether a given point in space was already explored or unknown. The figure below shows a scene representation using octomaps.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Quickhull:&lt;/strong&gt; It is a library that provides fast computation of the convex hull of a set of points in three dimensions. It was required in the project to estimate the swept-out volume of a given trajectory&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-scene-and-fetch-robot-in-gazebo-simulator&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/SceneGazebo_hu624e92eda7290956e26acba8c5dafb5e_567015_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Scene and Fetch robot in Gazebo simulator&#34;&gt;
+
+
+  &lt;img data-src=&#34;/project/incomplete-sensing/SceneGazebo_hu624e92eda7290956e26acba8c5dafb5e_567015_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1245&#34; height=&#34;864&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Scene and Fetch robot in Gazebo simulator
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-octomap-representation-of-the-scene-obtained-by-the-on-board-rgb-d-camera-of-the-robot&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/SceneRViz_hu08996a00c9db8f55ee9acda2566b8ddc_179214_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Octomap representation of the scene obtained by the on-board RGB-D camera of the robot&#34;&gt;
+
+
+  &lt;img data-src=&#34;/project/incomplete-sensing/SceneRViz_hu08996a00c9db8f55ee9acda2566b8ddc_179214_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1340&#34; height=&#34;874&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Octomap representation of the scene obtained by the on-board RGB-D camera of the robot
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;the-experiments&#34;&gt;THE EXPERIMENTS&lt;/h2&gt;
+&lt;p&gt;In order to succeed in the task of planning and executing a motion to grasp an object with sensor data, we needed to improve the scene representation. In many cases, it turned out that the robot was capable of successfully finding a plan but it failed in executing it because the scene was incomplete. This happens because the planner uses unknown space as free. The trivial solution of changing all the unknown space to occupied would not work because it becomes extremely likely that no path would be found since only a small part of the space is actually known by the robot. This assumption is also necessary to allow robots that do not know their entire environment to be able to explore it.&lt;/p&gt;
+&lt;p&gt;The figure below shows a diagram of the general proposed solution. The idea is to start a plan with the current known scene and then use this plan to extract points that the robot needs to explore before executing the trajectory to make sure that it will succeed (it won&amp;rsquo;t collide). After that, this points are examined to determine whether they are known or not and we command the robot to look at the set of those points that are unknown. Finally, the robot will create a new plan with the updated scene and will repeat this process until finding a safe plan (one where all the interesting points are in known space).&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-diagram-showing-the-main-steps-of-the-proposed-methodology&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/Diagram_hu654b006f9a72dc7f3e05133911643e78_103543_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Diagram showing the main steps of the proposed methodology&#34;&gt;
+
+
+  &lt;img data-src=&#34;/project/incomplete-sensing/Diagram_hu654b006f9a72dc7f3e05133911643e78_103543_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1439&#34; height=&#34;1056&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Diagram showing the main steps of the proposed methodology
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;In order to decide which points are interesting to look at, we have explored four different strategies, described below:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Object:&lt;/strong&gt; Instead of using the planned trajectory, the robot only looks at the object&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fixed points:&lt;/strong&gt; The robot looks at two points at each side of the object&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Frame origins:&lt;/strong&gt; The robot considers all the arm&amp;rsquo;s link origins for all joint configurations of the planned path&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Swept-out volume:&lt;/strong&gt; The robot considers the volume swept-out by the arm if the trajectory were executed. The volume is estimated by computing the convex hull of consecutive joint configurations in the planned path&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The figure below shows an image of the robot simulation looking at unknown points of the swept-out volume marked as red arrows. In order to compare the four strategies, we designed the following experiment: we place the robot base in a random position and orientation close to the tables. We randomly choose one can from all in the scene. Then, the robot implements the proposed methodology to create a plan to grasp the selected object using one of the strategies described above and finally the robot executes the trajectory. At that point, there are several possible outputs; the robot is able to succeed in the execution of the trajectory (i.e., it does not collide with obstacles and it reaches the grasping pose), the robot fails in executing the trajectory, the robot can not find a path to solve the problem at hand. For the cases of &lt;strong&gt;frame origins&lt;/strong&gt; and &lt;strong&gt;swept-out volume&lt;/strong&gt; strategies, the robot only executes the trajectory when the planner outputs a plan and all the interesting points are in the known region of the space. If the robot makes three planning attempts and it is still not able to find a completely safe path, it takes the risk and executes the current, potentially unsafe plan. This may or may not end up in collision but it is done to make sure that the algorithm won&amp;rsquo;t get stuck in infinite loops and also to avoid excessively large simulation times, especially because there might be points in space that could be occluded.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-fetch-robot-looking-at-interesting-unknown-points-of-the-swept-out-volume-of-the-computed-trajectory&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/Swept-out_hu367fbd22664606b4cec7a0528999f531_644752_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Fetch robot looking at interesting unknown points of the swept-out volume of the computed trajectory&#34;&gt;
+
+
+  &lt;img data-src=&#34;/project/incomplete-sensing/Swept-out_hu367fbd22664606b4cec7a0528999f531_644752_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1331&#34; height=&#34;1127&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Fetch robot looking at interesting unknown points of the swept-out volume of the computed trajectory
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Each strategy was tested when 50 trajectories were executed and the time taken to complete the scene was measured for every strategy. Each motion planning problem is independent of the previous, meaning that the knowledge of the previous scene is not used before solving the next problem.&lt;/p&gt;
+&lt;h2 id=&#34;results&#34;&gt;RESULTS&lt;/h2&gt;
+&lt;p&gt;The table below show the results of the 50 runs for each strategy. As expected, the simple &lt;strong&gt;object&lt;/strong&gt; and &lt;strong&gt;fixed points&lt;/strong&gt; strategies take much less time in looking before executing the planned trajectory since they choose fixed points. However, it can also be seen that their probability of collision is much higher; much more than half of the different trials were not successfully solved. The &lt;strong&gt;frame origins&lt;/strong&gt; and &lt;strong&gt;swept-out volume&lt;/strong&gt; strategies effectively increase the probability of succeeding in the task execution since they take into account important points in the planned trajectory. Also, even though they take much more time than the simple strategies, this time is worth in applications where safety is a priority. Finally, these strategies can also create unsafe trajectories since a maximum number of attempts is considered. This number could be increased to further reduce the chances of obtaining unsafe trajectories at the expense of more time taken to look.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-results-of-50-runs-for-the-proposed-methodology-for-completing-the-scene-for-the-4-different-explored-strategies&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/TableResults_hu17d347cdac24f94a8aed3b549cd3788b_83210_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Results of $50$ runs for the proposed methodology for completing the scene for the 4 different explored strategies&#34;&gt;
+
+
+  &lt;img data-src=&#34;/project/incomplete-sensing/TableResults_hu17d347cdac24f94a8aed3b549cd3788b_83210_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1051&#34; height=&#34;244&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Results of $50$ runs for the proposed methodology for completing the scene for the 4 different explored strategies
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;A video with several runs showing how the swept-out volume works can be found in &lt;a href=&#34;https://youtu.be/mFQVL0uSuAE&#34;&gt;https://youtu.be/mFQVL0uSuAE&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Neural Network Pruning - A review</title>
+      <link>/project/pruning/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>/project/pruning/</guid>
+      <description>&lt;p&gt;Machine learning - and especially deep learning - is a big trend these days; not only in research, but in many other domains. Large companies, start-ups, governments and many other actors have realized the importance on the use of massive available data to leverage their businesses and achieve more complex tasks than before. During the last decade, the size of machine learning models and the amount of data that they can efficiently process have significantly increased, in part due to the highly notable improvement of hardware technology especially tailored to meet the need of these models. Distributed computing has been an important resource to build large machine learning models. However, it is still not clear how to efficiently split the parameters of giant networks across distributed computing resources to achieve efficient training results. The nature of the gradient descent algorithm, that requires dense and sequential updates, leads to communication bottlenecks or accuracy degradation. Ideally, we would have asynchronous updates without hurting performance.&lt;/p&gt;
+&lt;p&gt;Other type of important applications for large machine learning models is in the mobile phones and low-resource devices. In these cases it is extremely important that training and inference costs (i.e., the costs of using the model to predict new values) are energy-efficient, since these may be implemented by the user in their own devices and long lasting battery life is a key requirement. Graphic Processing Units (GPU) are capable of achieving large amounts of computational operations, including matrix multiplication which is a key operation in training/inference processes of a Deep Neural Network (DNN). However, they are not, in general, energy-efficient. Only expecting that hardware designers reduce the energy cost of these operations at the hardware level is not possible since these enhancements may be slow, are mostly driven by commercial demands and may be highly expensive and risky.&lt;/p&gt;
+&lt;p&gt;An important common ground for the two scenarios described above is the fact that there are limits for hardware acceleration for machine learning models, either because algorithm characteristics restrict the massive parallelization on large distributed systems with high communication costs or because powerful available hardware are not very energy-efficient when building and evaluating machine learning models. One solution that will be discussed is to mostly rely on algorithmic improvements rather than only hardware acceleration.&lt;/p&gt;
+&lt;p&gt;Other important and related problem is the one of model representation. In general, we know that growing the size of deep learning models and the data used to build such models is beneficial to increase their accuracy. However, there are several issues that arise when trying to increase both. On one hand, the problem discussed above, about specialized distributed hardware, holds in this scenario since it is not possible to fit this amount of data and models into one single machine. Furthermore, all the required synchronism cost and larges amount of computation pose a big challenge. In these cases, conditional computing, where large parts of a network are active or inactive based on the current example, is a big promise.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;One key concept that has allowed the realization of large models with state-of-the art performances under the constraints mentioned before is that of sparsity.&lt;/strong&gt; One can think of sparseness in a deep network at different levels. For instance, one way to control the network complexity is &lt;em&gt;dropout&lt;/em&gt;; a well known regularization technique that randomly turn off certain neurons of the network during training. Other coarser level of sparsification include the use of conditional computation where networks that are controlled by a gated network can be active or not depending on the specific input. This sparseness may bring ways to approach the desired asynchronous parameter updates since it makes the gradient also sparse. We will guide the discussion about sparsity for training deep networks in efficient manners by using the proposed papers. On one hand, the paper &amp;ldquo;&lt;em&gt;Scalable and Sustainable Deep Learning via Randomized Hashing&lt;/em&gt;&amp;rdquo; is a type of adaptive dropout that uses randomized hashing to dramatically reduce the computation of neuron activations. The second paper &amp;ldquo;&lt;em&gt;SLIDE : In Defense of Smart Algorithms over Hardware Acceleration for Large-scale Deep Learning Systems&lt;/em&gt;&amp;rdquo; presents the SLIDE framework which relies on algorithmic and data-structural design to minimize computational overheads. The authors provide a C++ implementation that can outperform the best implementation on tailored hardware by orders of magnitude. Finally, the paper &amp;ldquo;&lt;em&gt;Outrageously Large Neural Networks: The Sparsely-gated Mixture of Experts Layer&lt;/em&gt;&amp;rdquo; written by Geoffrey Hinton and his group at Google shows a model based on conditional computation to increase a model capacity to be able to absorb huge amounts of data. Their models have up to $137$ billion parameters and can significantly improve state-of-the-art results at lower computational cost.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;quot;&lt;em&gt;Scalable and Sustainable Deep Learning via Randomized Hashing&lt;/em&gt;&amp;quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The core idea behind this paper attempts to solve the fundamental problem of achieving energy-efficient architectures for deep neural networks as well as asynchronous parameter updates in both training and inference. It does so by dramatically reducing the number of computations in the network by using sparsity. To achieve this, the authors propose to use a special form of adaptive dropout that relies on randomized hashing. In the idea of adaptive dropout, nodes in the network with low activation values are discarded. This has the described effect of controlling the network complexity but it also reduces the amount of computation since at every training/inference iteration, less operations are required. Previous approaches such as vanilla adaptive dropout and Winner-Take-all (WTA) require to choose the set of nodes for which the the activation is higher. To achieve this, these methods need to perform full computation of activations, although in the case of WTA only a certain percentage of activations are kept. An important idea behind these techniques is that of selecting neurons randomly according to some monotonic function of their activation, i.e., neurons are selected with higher probability if their activation is higher. The randomized hashing idea is that given an input $x$, its activation is a monotonic function of the inner product $w_i^{\top}x$ and therefore the problem of selecting a set of nodes with largest activations can be efficiently approximated to that of maximum inner product search using asymmetric locality sensitive hashing (LSH). In LSH the idea is to map similar items into the same bucket with high probability so that their collision probability is higher if they are close according to some similarity measure. All these results finally allow one to very efficiently find a set of neurons per training iteration with high activation by indexing the neurons into hash tables tailored for inner products. Since LSH achieves sub-linear performance in the search problem, there is a great benefit on using this technique instead of having to compute the activations for all neurons (as in vanilla dropout) or computing the active set in $O(n\log n)$ (as in WTA). At the end of the day, hashing is creating a probability distribution that is monotonic over the activations and applying the same core idea as in vanilla adaptive dropout but saving large amounts of computation.&lt;/p&gt;
+&lt;p&gt;This is a very interesting idea since it effectively shows that neurons into a deep neural network specializes and only contribute important information for some specific examples and furthermore it shows that a large amount of this redundant computation can be avoided by cleverly using efficient techniques such as LSH. In addition to this, the specific sparsity that arises by not considering the output of low activation neurons can be taken into account to perform sparse gradient updates. According to our discussion above, this is a highly desirable result since it easily allows one to perform distributed and asynchronous updates.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;quot;&lt;em&gt;SLIDE : In Defense of Smart Algorithms over Hardware Acceleration for Large-scale Deep Learning Systems&lt;/em&gt;&amp;quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this paper the authors implement several implementation improvements over the sparse updates using LSH, such as initialization, the feedforward pass with hash table sampling, the sparse gradient update and others to finally attain a C++ implementation that is orders of magnitude faster than the best GPU implementation for state-of-the-art problems. Actually, the authors show a very good scalability of performance with respect to the number of cores mainly due to the asynchronous gradient updates. These papers express a very strong argument about the importance of clever algorithmic design with respect to hardware acceleration. Note that most of the ideas discussed here are not suitable for GPU implementation, since their performance drastically drops with sparse memory access. The successful of GPU computation is to achieve aligned-memory access to maximize bandwidth, which is generally, several times lower than processing power.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;quot;&lt;em&gt;Outrageously Large Neural Networks: The Sparsely-gated Mixture of Experts Layer&lt;/em&gt;&amp;quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This paper, written by Google, deals with the issue of model representation. The desired objective is to dramatically increase model capacity but not computation to be able to absorb vast quantities of data available today. Note that naively increasing model size (i.e., increasing the number of layers and neurons and therefore the number of parameters) easily results in an equal increase in the amount of computation and memory footprint that may not be possible to train using current state-of-the-art specialized distributed hardware. The authors propose the use of conditional computation and specifically the sparsely-gated mixture of experts layer. Under this model, a mix of expert networks is trained using specialized gating network that selects a sparse combination of the experts for each input example. The final model results in a model with a larger number of parameters when compared to traditional dense models but with sparse computations, since depending on the input example, the gating networks select a handful of experts only to evaluate, saving high amounts of computation. One could argue that the core idea behind this methods is that every input is sparse in the world of concepts and, similar to the ideas discussed before, one can use such sparseness to reduce the amount of computation required to achieve good performance. Also aligned with the previous discussion, the MoE model can easily be parallelized since each expert&amp;rsquo;s learning process can be designed to fit in one machine, greatly reducing the high cost of communication and synchronization. Also, note that this model is similar but different to that of ensembles. Possibly the most important difference is that all data need to be fed into inidividual learners in ensemble methods, while this is not true in the case of MoE. The gating network can compute its output first and based on this computation, only the output of the selected experts is required. Finally and very important is the necessity of balancing the expert utilization to avoid the phenomena that comes out when the same experts are chosen over and over again. At first, the experts are chosen almost randomly, since the gating network is not fully trained, but every time an expert is favored it is chosen more often producing experts with large weights. This balancing is achieved by introducing an additional term to the loss function of the model. The results of this proposal are clear. Using the type of sparsity introduced by the mixture of experts one can create models with amounts of parameters that were not possible before and use these models with even larger amounts of data to improve the performance of difficult learning problems.&lt;/p&gt;
+&lt;p&gt;The topic of sparsity on deep neural networks convincingly shows that inputs are usually sparse in the world of concepts and furthermore that this can be used to dramatically reduce the number of computations required for training/inference either for achieving energy-efficient implementations, as required in many commercial and industrial applications, or to significantly increase model capacity that allows us to solve larger and more difficult problems where huge amounts of data is available. The reason why this sparsity is possible and is a good idea in deep neural networks may shed light on better understanding how the learning process of complex concepts and models works to create more sophisticated learning algorithms.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

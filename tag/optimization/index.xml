@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Optimization | Carlos Quintero-Peña</title>
+    <link>/tag/optimization/</link>
+      <atom:link href="/tag/optimization/index.xml" rel="self" type="application/rss+xml" />
+    <description>Optimization</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Optimization</title>
+      <link>/tag/optimization/</link>
+    </image>
+    
+    <item>
+      <title>Can Theoretical Algorithms Efficiently Escape Saddle Points in Deep Learning?</title>
+      <link>/project/example/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>/project/example/</guid>
+      <description>&lt;p&gt;This project provides a literature review for the most important recent works related to optimizing high-dimensional non-convex functions in the presence of saddle points mostly for machine learning applications.&lt;/p&gt;
+&lt;p&gt;The inspiration came from reviewing the paper &amp;ldquo;How to Escape Saddle Points Efficiently?&amp;rdquo;. A large research effort has been devoted to proposed methods that can converge to second order stationary points efficiently. Of special interest is the set of methods that do not rely on Hessian computation, mainly driven by applications in machine learning where this may not be feasible. Although, many important theoretical results have been proposed, many of them have not be tested in real experiments, especially in the context of training a deep neural network. We have designed experiments with different network architectures and state-of-the-art datasets to observe the behavior of perturbed versions of gradient descent. Initial results show that an improvement in experimental convergence rate can be seen only for small and shallow networks.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

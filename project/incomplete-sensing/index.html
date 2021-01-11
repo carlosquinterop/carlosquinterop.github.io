@@ -1,0 +1,1485 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+  
+  <meta name="generator" content="Wowchemy 5.0.0-beta.1 for Hugo">
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Carlos Quintero-Peña">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="A Fetch robot doing Motion Planning and executing a trajectory when the scene representation may be incomplete">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/project/incomplete-sensing/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#1565c0">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3848b427d7eb1e57a64b3ba29764068e.css">
+
+  
+
+
+
+
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+  <link rel="manifest" href="/index.webmanifest">
+  
+
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/project/incomplete-sensing/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Carlos Quintero-Peña">
+  <meta property="og:url" content="/project/incomplete-sensing/">
+  <meta property="og:title" content="Motion Planning with incomplete scene information | Carlos Quintero-Peña">
+  <meta property="og:description" content="A Fetch robot doing Motion Planning and executing a trajectory when the scene representation may be incomplete"><meta property="og:image" content="/project/incomplete-sensing/featured.png">
+  <meta property="twitter:image" content="/project/incomplete-sensing/featured.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2021-01-11T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2021-01-11T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/project/incomplete-sensing/"
+  },
+  "headline": "Motion Planning with incomplete scene information",
+  
+  "image": [
+    "/project/incomplete-sensing/featured.png"
+  ],
+  
+  "datePublished": "2021-01-11T00:00:00Z",
+  "dateModified": "2021-01-11T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Carlos Quintero-Peña"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Carlos Quintero-Peña",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "A Fetch robot doing Motion Planning and executing a trajectory when the scene representation may be incomplete"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Motion Planning with incomplete scene information | Carlos Quintero-Peña</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.7264cf0eba3b66951b36da7d2cecf9c5.js"></script>
+
+  
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Carlos Quintero-Peña</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Carlos Quintero-Peña</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#news"><span>News</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article article-project">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+<div class="article-container pt-3">
+  <h1>Motion Planning with incomplete scene information</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span class="author-highlighted">
+      Carlos Quintero-Peña</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 11, 2021
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="btn btn-outline-primary btn-page-header" href="/https:/drive.google.com/file/d/1dxVhyJaLlkUFkFSHXZyqpVBGNnVrHVCy/view?usp=sharing" target="_blank" rel="noopener">
+  PDF
+</a>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary btn-page-header" href="/https:/drive.google.com/file/d/1a3licn2ZrwtLK9TcRYV1JAR-V1XXnB2i/view?usp=sharing" target="_blank" rel="noopener">
+  Slides
+</a>
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 500px;">
+  <div style="position: relative">
+    <img src="/project/incomplete-sensing/featured_hu624e92eda7290956e26acba8c5dafb5e_567015_720x0_resize_lanczos_2.png" alt="" class="featured-image">
+    <span class="article-header-caption">Fetch robot in the test environment</span>
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>The objective of the project is to simulate the Fetch robot in a realistic environment considering uncertainty. In order to accomplish this we needed to take into account the complexity of a real robotic platform, starting with the topics covered during the course, i.e., kinematics, dynamics, control, but also others that were either briefly discussed or not at all, such as sensing, localization, motion planning, etc. Instead of building or analyzing all of these from scratch for the Fetch robot, we used a large software stack based on ROS (Robot Operating System). In the project, all of these were integrated in order to solve the problem of successfully planning and executing a grasping task in the presence of uncertain obstacles. The following are the main software components of the solution and a brief description of what was done in this project with each one:</p>
+<ul>
+<li>
+<p><strong>Gazebo:</strong> It is the physics simulator where the world and robot are modeled. For the project I created the testing scenes by creating first objects (cylinders in this case) that represent cans and wooden tables. Each graspable object required a grasping pose that the robot knows beforehand that is used to compute the goal configuration for every can. The poses in ROS are represented as a $3D$ vector that represents the position and a $4D$ vector that represents its orientation as a quaternion. The figure below shows an example of one Gazebo scene</p>
+</li>
+<li>
+<p><strong>tf2:</strong> It is a ROS package that provided all the transformations between the different frames in the world. The robot geometry is already known for the the package and the transformations are given as abstract objects that can be operated as we operate transformation matrices. We used these transformations to compute the frame origins of the robot&rsquo;s links that were part of the planned trajectory</p>
+</li>
+<li>
+<p><strong>MoveIt:</strong> It is a ROS package that provides access to a set of sampling-based planners available in OMPL. Plans are represented as a sequence of robot states (joint configurations) that are created from the group of joints that is used to plan. For this project we created a group for the 7 arm joints and the torso and therefore, each state could be represented as an 8-dimensional vector. This package also provides controller functions for executing the planned trajectories. The trajectory was required to be time-parameterized before passing it to the controller. The controller also provides a way to receive feedback on whether the given trajectory was successfully executed or not. This was required for the experiments</p>
+</li>
+<li>
+<p><strong>Octomap:</strong> It is a library that efficiently stores and manages data that comes from cloud points such as those captured with a RGB-D camera. The octomap represents the world by classifying parts of the space as free, mixed (free/occupied) or unknown. It creates boxes and each box is labeled as one of the possibilities. If the box is empty it stores it with a large resolution, if the box is mixed, it further split it into smaller boxes and it keeps doing that until all are free or occupied or a resolution limit is reached. It was used in this project to represent the scenes. In the experiments, we used a query function to know whether a given point in space was already explored or unknown. The figure below shows a scene representation using octomaps.</p>
+</li>
+<li>
+<p><strong>Quickhull:</strong> It is a library that provides fast computation of the convex hull of a set of points in three dimensions. It was required in the project to estimate the swept-out volume of a given trajectory</p>
+</li>
+</ul>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-scene-and-fetch-robot-in-gazebo-simulator">
+
+
+  <a data-fancybox="" href="/project/incomplete-sensing/SceneGazebo_hu624e92eda7290956e26acba8c5dafb5e_567015_2000x2000_fit_lanczos_2.png" data-caption="Scene and Fetch robot in Gazebo simulator">
+
+
+  <img data-src="/project/incomplete-sensing/SceneGazebo_hu624e92eda7290956e26acba8c5dafb5e_567015_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="1245" height="864">
+</a>
+
+
+  
+  
+  <figcaption>
+    Scene and Fetch robot in Gazebo simulator
+  </figcaption>
+
+
+</figure>
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-octomap-representation-of-the-scene-obtained-by-the-on-board-rgb-d-camera-of-the-robot">
+
+
+  <a data-fancybox="" href="/project/incomplete-sensing/SceneRViz_hu08996a00c9db8f55ee9acda2566b8ddc_179214_2000x2000_fit_lanczos_2.png" data-caption="Octomap representation of the scene obtained by the on-board RGB-D camera of the robot">
+
+
+  <img data-src="/project/incomplete-sensing/SceneRViz_hu08996a00c9db8f55ee9acda2566b8ddc_179214_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="1340" height="874">
+</a>
+
+
+  
+  
+  <figcaption>
+    Octomap representation of the scene obtained by the on-board RGB-D camera of the robot
+  </figcaption>
+
+
+</figure>
+
+<h2 id="the-experiments">THE EXPERIMENTS</h2>
+<p>In order to succeed in the task of planning and executing a motion to grasp an object with sensor data, we needed to improve the scene representation. In many cases, it turned out that the robot was capable of successfully finding a plan but it failed in executing it because the scene was incomplete. This happens because the planner uses unknown space as free. The trivial solution of changing all the unknown space to occupied would not work because it becomes extremely likely that no path would be found since only a small part of the space is actually known by the robot. This assumption is also necessary to allow robots that do not know their entire environment to be able to explore it.</p>
+<p>The figure below shows a diagram of the general proposed solution. The idea is to start a plan with the current known scene and then use this plan to extract points that the robot needs to explore before executing the trajectory to make sure that it will succeed (it won&rsquo;t collide). After that, this points are examined to determine whether they are known or not and we command the robot to look at the set of those points that are unknown. Finally, the robot will create a new plan with the updated scene and will repeat this process until finding a safe plan (one where all the interesting points are in known space).</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-diagram-showing-the-main-steps-of-the-proposed-methodology">
+
+
+  <a data-fancybox="" href="/project/incomplete-sensing/Diagram_hu654b006f9a72dc7f3e05133911643e78_103543_2000x2000_fit_lanczos_2.png" data-caption="Diagram showing the main steps of the proposed methodology">
+
+
+  <img data-src="/project/incomplete-sensing/Diagram_hu654b006f9a72dc7f3e05133911643e78_103543_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="1439" height="1056">
+</a>
+
+
+  
+  
+  <figcaption>
+    Diagram showing the main steps of the proposed methodology
+  </figcaption>
+
+
+</figure>
+
+<p>In order to decide which points are interesting to look at, we have explored four different strategies, described below:</p>
+<ul>
+<li><strong>Object:</strong> Instead of using the planned trajectory, the robot only looks at the object</li>
+<li><strong>Fixed points:</strong> The robot looks at two points at each side of the object</li>
+<li><strong>Frame origins:</strong> The robot considers all the arm&rsquo;s link origins for all joint configurations of the planned path</li>
+<li><strong>Swept-out volume:</strong> The robot considers the volume swept-out by the arm if the trajectory were executed. The volume is estimated by computing the convex hull of consecutive joint configurations in the planned path</li>
+</ul>
+<p>The figure below shows an image of the robot simulation looking at unknown points of the swept-out volume marked as red arrows. In order to compare the four strategies, we designed the following experiment: we place the robot base in a random position and orientation close to the tables. We randomly choose one can from all in the scene. Then, the robot implements the proposed methodology to create a plan to grasp the selected object using one of the strategies described above and finally the robot executes the trajectory. At that point, there are several possible outputs; the robot is able to succeed in the execution of the trajectory (i.e., it does not collide with obstacles and it reaches the grasping pose), the robot fails in executing the trajectory, the robot can not find a path to solve the problem at hand. For the cases of <strong>frame origins</strong> and <strong>swept-out volume</strong> strategies, the robot only executes the trajectory when the planner outputs a plan and all the interesting points are in the known region of the space. If the robot makes three planning attempts and it is still not able to find a completely safe path, it takes the risk and executes the current, potentially unsafe plan. This may or may not end up in collision but it is done to make sure that the algorithm won&rsquo;t get stuck in infinite loops and also to avoid excessively large simulation times, especially because there might be points in space that could be occluded.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-fetch-robot-looking-at-interesting-unknown-points-of-the-swept-out-volume-of-the-computed-trajectory">
+
+
+  <a data-fancybox="" href="/project/incomplete-sensing/Swept-out_hu367fbd22664606b4cec7a0528999f531_644752_2000x2000_fit_lanczos_2.png" data-caption="Fetch robot looking at interesting unknown points of the swept-out volume of the computed trajectory">
+
+
+  <img data-src="/project/incomplete-sensing/Swept-out_hu367fbd22664606b4cec7a0528999f531_644752_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="1331" height="1127">
+</a>
+
+
+  
+  
+  <figcaption>
+    Fetch robot looking at interesting unknown points of the swept-out volume of the computed trajectory
+  </figcaption>
+
+
+</figure>
+
+<p>Each strategy was tested when 50 trajectories were executed and the time taken to complete the scene was measured for every strategy. Each motion planning problem is independent of the previous, meaning that the knowledge of the previous scene is not used before solving the next problem.</p>
+<h2 id="results">RESULTS</h2>
+<p>The table below show the results of the 50 runs for each strategy. As expected, the simple <strong>object</strong> and <strong>fixed points</strong> strategies take much less time in looking before executing the planned trajectory since they choose fixed points. However, it can also be seen that their probability of collision is much higher; much more than half of the different trials were not successfully solved. The <strong>frame origins</strong> and <strong>swept-out volume</strong> strategies effectively increase the probability of succeeding in the task execution since they take into account important points in the planned trajectory. Also, even though they take much more time than the simple strategies, this time is worth in applications where safety is a priority. Finally, these strategies can also create unsafe trajectories since a maximum number of attempts is considered. This number could be increased to further reduce the chances of obtaining unsafe trajectories at the expense of more time taken to look.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-results-of-50-runs-for-the-proposed-methodology-for-completing-the-scene-for-the-4-different-explored-strategies">
+
+
+  <a data-fancybox="" href="/project/incomplete-sensing/TableResults_hu17d347cdac24f94a8aed3b549cd3788b_83210_2000x2000_fit_lanczos_2.png" data-caption="Results of $50$ runs for the proposed methodology for completing the scene for the 4 different explored strategies">
+
+
+  <img data-src="/project/incomplete-sensing/TableResults_hu17d347cdac24f94a8aed3b549cd3788b_83210_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="1051" height="244">
+</a>
+
+
+  
+  
+  <figcaption>
+    Results of $50$ runs for the proposed methodology for completing the scene for the 4 different explored strategies
+  </figcaption>
+
+
+</figure>
+
+<p>A video with several runs showing how the swept-out volume works can be found in <a href="https://youtu.be/mFQVL0uSuAE">https://youtu.be/mFQVL0uSuAE</a>.</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/robotics/">Robotics</a>
+  
+  <a class="badge badge-light" href="/tag/motion-planning/">Motion Planning</a>
+  
+  <a class="badge badge-light" href="/tag/sensing-uncertainty/">Sensing Uncertainty</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/project/incomplete-sensing/&amp;text=Motion%20Planning%20with%20incomplete%20scene%20information" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/project/incomplete-sensing/&amp;t=Motion%20Planning%20with%20incomplete%20scene%20information" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Motion%20Planning%20with%20incomplete%20scene%20information&amp;body=/project/incomplete-sensing/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/project/incomplete-sensing/&amp;title=Motion%20Planning%20with%20incomplete%20scene%20information" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Motion%20Planning%20with%20incomplete%20scene%20information%20/project/incomplete-sensing/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/project/incomplete-sensing/&amp;title=Motion%20Planning%20with%20incomplete%20scene%20information" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hue524aebe28608d83cd7a99154d83b76e_1028491_270x270_fill_q75_lanczos_center.jpg" alt="Carlos Quintero-Peña">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Carlos Quintero-Peña</h5>
+      <h6 class="card-subtitle">PhD Student in Computer Science</h6>
+      <p class="card-text">My research interests include robotics, optimization and machine learning</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=IpROr6cAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/carlosquinterop" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/carlos-quintero-1b425153/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+    <div class="project-related-pages content-widget-hr">
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+    </div>
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+    Published with
+    <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>  —
+    the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
+    open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'event' : "Events",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/js/wowchemy.min.aeecf26c1eff6b9588dbafc1a9f3953c.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

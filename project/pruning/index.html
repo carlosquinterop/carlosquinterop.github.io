@@ -1,0 +1,1258 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+  
+  <meta name="generator" content="Wowchemy 5.0.0-beta.1 for Hugo">
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Carlos Quintero-Peña">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Review of methods to prune neural networks">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/project/pruning/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#1565c0">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous" media="print" onload="this.media='all'">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.3848b427d7eb1e57a64b3ba29764068e.css">
+
+  
+
+
+
+
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+  <link rel="manifest" href="/index.webmanifest">
+  
+
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/project/pruning/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Carlos Quintero-Peña">
+  <meta property="og:url" content="/project/pruning/">
+  <meta property="og:title" content="Neural Network Pruning - A review | Carlos Quintero-Peña">
+  <meta property="og:description" content="Review of methods to prune neural networks"><meta property="og:image" content="/project/pruning/featured.png">
+  <meta property="twitter:image" content="/project/pruning/featured.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2021-01-11T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2021-01-11T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/project/pruning/"
+  },
+  "headline": "Neural Network Pruning - A review",
+  
+  "image": [
+    "/project/pruning/featured.png"
+  ],
+  
+  "datePublished": "2021-01-11T00:00:00Z",
+  "dateModified": "2021-01-11T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Carlos Quintero-Peña"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Carlos Quintero-Peña",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Review of methods to prune neural networks"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Neural Network Pruning - A review | Carlos Quintero-Peña</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.7264cf0eba3b66951b36da7d2cecf9c5.js"></script>
+
+  
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Carlos Quintero-Peña</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Carlos Quintero-Peña</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#news"><span>News</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article article-project">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+<div class="article-container pt-3">
+  <h1>Neural Network Pruning - A review</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span class="author-highlighted">
+      Carlos Quintero-Peña</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 11, 2021
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary btn-page-header" href="/https:/drive.google.com/file/d/1RmwX1IUxI8B7SSmNodxB_lMIcWbuwWau/view?usp=sharing" target="_blank" rel="noopener">
+  Slides
+</a>
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 401px;">
+  <div style="position: relative">
+    <img src="/project/pruning/featured_huc990071a5168603f66b308db12e0c30a_66866_720x0_resize_lanczos_2.png" alt="" class="featured-image">
+    <span class="article-header-caption">Pruning method&rsquo;s summary</span>
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>Machine learning - and especially deep learning - is a big trend these days; not only in research, but in many other domains. Large companies, start-ups, governments and many other actors have realized the importance on the use of massive available data to leverage their businesses and achieve more complex tasks than before. During the last decade, the size of machine learning models and the amount of data that they can efficiently process have significantly increased, in part due to the highly notable improvement of hardware technology especially tailored to meet the need of these models. Distributed computing has been an important resource to build large machine learning models. However, it is still not clear how to efficiently split the parameters of giant networks across distributed computing resources to achieve efficient training results. The nature of the gradient descent algorithm, that requires dense and sequential updates, leads to communication bottlenecks or accuracy degradation. Ideally, we would have asynchronous updates without hurting performance.</p>
+<p>Other type of important applications for large machine learning models is in the mobile phones and low-resource devices. In these cases it is extremely important that training and inference costs (i.e., the costs of using the model to predict new values) are energy-efficient, since these may be implemented by the user in their own devices and long lasting battery life is a key requirement. Graphic Processing Units (GPU) are capable of achieving large amounts of computational operations, including matrix multiplication which is a key operation in training/inference processes of a Deep Neural Network (DNN). However, they are not, in general, energy-efficient. Only expecting that hardware designers reduce the energy cost of these operations at the hardware level is not possible since these enhancements may be slow, are mostly driven by commercial demands and may be highly expensive and risky.</p>
+<p>An important common ground for the two scenarios described above is the fact that there are limits for hardware acceleration for machine learning models, either because algorithm characteristics restrict the massive parallelization on large distributed systems with high communication costs or because powerful available hardware are not very energy-efficient when building and evaluating machine learning models. One solution that will be discussed is to mostly rely on algorithmic improvements rather than only hardware acceleration.</p>
+<p>Other important and related problem is the one of model representation. In general, we know that growing the size of deep learning models and the data used to build such models is beneficial to increase their accuracy. However, there are several issues that arise when trying to increase both. On one hand, the problem discussed above, about specialized distributed hardware, holds in this scenario since it is not possible to fit this amount of data and models into one single machine. Furthermore, all the required synchronism cost and larges amount of computation pose a big challenge. In these cases, conditional computing, where large parts of a network are active or inactive based on the current example, is a big promise.</p>
+<p><strong>One key concept that has allowed the realization of large models with state-of-the art performances under the constraints mentioned before is that of sparsity.</strong> One can think of sparseness in a deep network at different levels. For instance, one way to control the network complexity is <em>dropout</em>; a well known regularization technique that randomly turn off certain neurons of the network during training. Other coarser level of sparsification include the use of conditional computation where networks that are controlled by a gated network can be active or not depending on the specific input. This sparseness may bring ways to approach the desired asynchronous parameter updates since it makes the gradient also sparse. We will guide the discussion about sparsity for training deep networks in efficient manners by using the proposed papers. On one hand, the paper &ldquo;<em>Scalable and Sustainable Deep Learning via Randomized Hashing</em>&rdquo; is a type of adaptive dropout that uses randomized hashing to dramatically reduce the computation of neuron activations. The second paper &ldquo;<em>SLIDE : In Defense of Smart Algorithms over Hardware Acceleration for Large-scale Deep Learning Systems</em>&rdquo; presents the SLIDE framework which relies on algorithmic and data-structural design to minimize computational overheads. The authors provide a C++ implementation that can outperform the best implementation on tailored hardware by orders of magnitude. Finally, the paper &ldquo;<em>Outrageously Large Neural Networks: The Sparsely-gated Mixture of Experts Layer</em>&rdquo; written by Geoffrey Hinton and his group at Google shows a model based on conditional computation to increase a model capacity to be able to absorb huge amounts of data. Their models have up to $137$ billion parameters and can significantly improve state-of-the-art results at lower computational cost.</p>
+<p><strong>&quot;<em>Scalable and Sustainable Deep Learning via Randomized Hashing</em>&quot;</strong></p>
+<p>The core idea behind this paper attempts to solve the fundamental problem of achieving energy-efficient architectures for deep neural networks as well as asynchronous parameter updates in both training and inference. It does so by dramatically reducing the number of computations in the network by using sparsity. To achieve this, the authors propose to use a special form of adaptive dropout that relies on randomized hashing. In the idea of adaptive dropout, nodes in the network with low activation values are discarded. This has the described effect of controlling the network complexity but it also reduces the amount of computation since at every training/inference iteration, less operations are required. Previous approaches such as vanilla adaptive dropout and Winner-Take-all (WTA) require to choose the set of nodes for which the the activation is higher. To achieve this, these methods need to perform full computation of activations, although in the case of WTA only a certain percentage of activations are kept. An important idea behind these techniques is that of selecting neurons randomly according to some monotonic function of their activation, i.e., neurons are selected with higher probability if their activation is higher. The randomized hashing idea is that given an input $x$, its activation is a monotonic function of the inner product $w_i^{\top}x$ and therefore the problem of selecting a set of nodes with largest activations can be efficiently approximated to that of maximum inner product search using asymmetric locality sensitive hashing (LSH). In LSH the idea is to map similar items into the same bucket with high probability so that their collision probability is higher if they are close according to some similarity measure. All these results finally allow one to very efficiently find a set of neurons per training iteration with high activation by indexing the neurons into hash tables tailored for inner products. Since LSH achieves sub-linear performance in the search problem, there is a great benefit on using this technique instead of having to compute the activations for all neurons (as in vanilla dropout) or computing the active set in $O(n\log n)$ (as in WTA). At the end of the day, hashing is creating a probability distribution that is monotonic over the activations and applying the same core idea as in vanilla adaptive dropout but saving large amounts of computation.</p>
+<p>This is a very interesting idea since it effectively shows that neurons into a deep neural network specializes and only contribute important information for some specific examples and furthermore it shows that a large amount of this redundant computation can be avoided by cleverly using efficient techniques such as LSH. In addition to this, the specific sparsity that arises by not considering the output of low activation neurons can be taken into account to perform sparse gradient updates. According to our discussion above, this is a highly desirable result since it easily allows one to perform distributed and asynchronous updates.</p>
+<p><strong>&quot;<em>SLIDE : In Defense of Smart Algorithms over Hardware Acceleration for Large-scale Deep Learning Systems</em>&quot;</strong></p>
+<p>In this paper the authors implement several implementation improvements over the sparse updates using LSH, such as initialization, the feedforward pass with hash table sampling, the sparse gradient update and others to finally attain a C++ implementation that is orders of magnitude faster than the best GPU implementation for state-of-the-art problems. Actually, the authors show a very good scalability of performance with respect to the number of cores mainly due to the asynchronous gradient updates. These papers express a very strong argument about the importance of clever algorithmic design with respect to hardware acceleration. Note that most of the ideas discussed here are not suitable for GPU implementation, since their performance drastically drops with sparse memory access. The successful of GPU computation is to achieve aligned-memory access to maximize bandwidth, which is generally, several times lower than processing power.</p>
+<p><strong>&quot;<em>Outrageously Large Neural Networks: The Sparsely-gated Mixture of Experts Layer</em>&quot;</strong></p>
+<p>This paper, written by Google, deals with the issue of model representation. The desired objective is to dramatically increase model capacity but not computation to be able to absorb vast quantities of data available today. Note that naively increasing model size (i.e., increasing the number of layers and neurons and therefore the number of parameters) easily results in an equal increase in the amount of computation and memory footprint that may not be possible to train using current state-of-the-art specialized distributed hardware. The authors propose the use of conditional computation and specifically the sparsely-gated mixture of experts layer. Under this model, a mix of expert networks is trained using specialized gating network that selects a sparse combination of the experts for each input example. The final model results in a model with a larger number of parameters when compared to traditional dense models but with sparse computations, since depending on the input example, the gating networks select a handful of experts only to evaluate, saving high amounts of computation. One could argue that the core idea behind this methods is that every input is sparse in the world of concepts and, similar to the ideas discussed before, one can use such sparseness to reduce the amount of computation required to achieve good performance. Also aligned with the previous discussion, the MoE model can easily be parallelized since each expert&rsquo;s learning process can be designed to fit in one machine, greatly reducing the high cost of communication and synchronization. Also, note that this model is similar but different to that of ensembles. Possibly the most important difference is that all data need to be fed into inidividual learners in ensemble methods, while this is not true in the case of MoE. The gating network can compute its output first and based on this computation, only the output of the selected experts is required. Finally and very important is the necessity of balancing the expert utilization to avoid the phenomena that comes out when the same experts are chosen over and over again. At first, the experts are chosen almost randomly, since the gating network is not fully trained, but every time an expert is favored it is chosen more often producing experts with large weights. This balancing is achieved by introducing an additional term to the loss function of the model. The results of this proposal are clear. Using the type of sparsity introduced by the mixture of experts one can create models with amounts of parameters that were not possible before and use these models with even larger amounts of data to improve the performance of difficult learning problems.</p>
+<p>The topic of sparsity on deep neural networks convincingly shows that inputs are usually sparse in the world of concepts and furthermore that this can be used to dramatically reduce the number of computations required for training/inference either for achieving energy-efficient implementations, as required in many commercial and industrial applications, or to significantly increase model capacity that allows us to solve larger and more difficult problems where huge amounts of data is available. The reason why this sparsity is possible and is a good idea in deep neural networks may shed light on better understanding how the learning process of complex concepts and models works to create more sophisticated learning algorithms.</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/neural-networks/">Neural Networks</a>
+  
+  <a class="badge badge-light" href="/tag/pruning/">Pruning</a>
+  
+  <a class="badge badge-light" href="/tag/deep-learning/">Deep Learning</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/project/pruning/&amp;text=Neural%20Network%20Pruning%20-%20A%20review" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/project/pruning/&amp;t=Neural%20Network%20Pruning%20-%20A%20review" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Neural%20Network%20Pruning%20-%20A%20review&amp;body=/project/pruning/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/project/pruning/&amp;title=Neural%20Network%20Pruning%20-%20A%20review" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Neural%20Network%20Pruning%20-%20A%20review%20/project/pruning/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/project/pruning/&amp;title=Neural%20Network%20Pruning%20-%20A%20review" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hue524aebe28608d83cd7a99154d83b76e_1028491_270x270_fill_q75_lanczos_center.jpg" alt="Carlos Quintero-Peña">
+    
+
+    <div class="media-body">
+      <h5 class="card-title">Carlos Quintero-Peña</h5>
+      <h6 class="card-subtitle">PhD Student in Computer Science</h6>
+      <p class="card-text">My research interests include robotics, optimization and machine learning</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=IpROr6cAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/carlosquinterop" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/carlos-quintero-1b425153/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/project/example/">Can Theoretical Algorithms Efficiently Escape Saddle Points in Deep Learning?</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+    <div class="project-related-pages content-widget-hr">
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+    </div>
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+    Published with
+    <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a>  —
+    the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
+    open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'event' : "Events",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/js/wowchemy.min.aeecf26c1eff6b9588dbafc1a9f3953c.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>
