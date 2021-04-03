@@ -34,10 +34,10 @@
   
     
   
-  <meta name="description" content="Review of optimization algorithms that can escape saddle points in Deep Learning and some experimental results">
+  <meta name="description" content="Optimization-based motion planning algorithm capable of incorporating sensing uncertainty for a variety of noise models">
 
   
-  <link rel="alternate" hreflang="en-us" href="/project/example/">
+  <link rel="alternate" hreflang="en-us" href="/project/sensing_uncertainty/">
 
   
 
@@ -266,7 +266,7 @@
   <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/project/example/">
+  <link rel="canonical" href="/project/sensing_uncertainty/">
 
   
   
@@ -281,15 +281,15 @@
   <meta property="twitter:card" content="summary_large_image">
   
   <meta property="og:site_name" content="Carlos Quintero-Peña">
-  <meta property="og:url" content="/project/example/">
-  <meta property="og:title" content="Can Theoretical Algorithms Efficiently Escape Saddle Points in Deep Learning? | Carlos Quintero-Peña">
-  <meta property="og:description" content="Review of optimization algorithms that can escape saddle points in Deep Learning and some experimental results"><meta property="og:image" content="/project/example/featured.png">
-  <meta property="twitter:image" content="/project/example/featured.png"><meta property="og:locale" content="en-us">
+  <meta property="og:url" content="/project/sensing_uncertainty/">
+  <meta property="og:title" content="Robust Motion Planning under Sensing Uncertainty | Carlos Quintero-Peña">
+  <meta property="og:description" content="Optimization-based motion planning algorithm capable of incorporating sensing uncertainty for a variety of noise models"><meta property="og:image" content="/project/sensing_uncertainty/featured.png">
+  <meta property="twitter:image" content="/project/sensing_uncertainty/featured.png"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2021-01-11T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2021-01-12T10:51:33-06:00">
+    <meta property="article:modified_time" content="2021-04-02T21:17:22-05:00">
   
 
   
@@ -311,16 +311,16 @@
   "@type": "Article",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "/project/example/"
+    "@id": "/project/sensing_uncertainty/"
   },
-  "headline": "Can Theoretical Algorithms Efficiently Escape Saddle Points in Deep Learning?",
+  "headline": "Robust Motion Planning under Sensing Uncertainty",
   
   "image": [
-    "/project/example/featured.png"
+    "/project/sensing_uncertainty/featured.png"
   ],
   
   "datePublished": "2021-01-11T00:00:00Z",
-  "dateModified": "2021-01-12T10:51:33-06:00",
+  "dateModified": "2021-04-02T21:17:22-05:00",
   
   "author": {
     "@type": "Person",
@@ -335,7 +335,7 @@
       "url": "/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
     }
   },
-  "description": "Review of optimization algorithms that can escape saddle points in Deep Learning and some experimental results"
+  "description": "Optimization-based motion planning algorithm capable of incorporating sensing uncertainty for a variety of noise models"
 }
 </script>
 
@@ -353,7 +353,7 @@
 
 
 
-  <title>Can Theoretical Algorithms Efficiently Escape Saddle Points in Deep Learning? | Carlos Quintero-Peña</title>
+  <title>Robust Motion Planning under Sensing Uncertainty | Carlos Quintero-Peña</title>
 
 </head>
 
@@ -681,7 +681,7 @@
 
 
 <div class="article-container pt-3">
-  <h1>Can Theoretical Algorithms Efficiently Escape Saddle Points in Deep Learning?</h1>
+  <h1>Robust Motion Planning under Sensing Uncertainty</h1>
 
   
 
@@ -698,8 +698,7 @@
     
 
   <span class="author-highlighted">
-      Carlos Quintero-Peña</span>, <span >
-      Sean Farrell</span>
+      Carlos Quintero-Peña</span>
   </div>
   
   
@@ -712,7 +711,7 @@
           Last updated on
       
     
-    Jan 12, 2021
+    Apr 2, 2021
   </span>
   
 
@@ -745,61 +744,14 @@
 
 
 
-<div class="btn-links mb-3">
-  
-  
-
-
-
-
-
-
-
-
-  
-    
-  
-
-
-
-<a class="btn btn-outline-primary btn-page-header" href="/pdfs/Escaping_Saddle_Points.pdf" target="_blank" rel="noopener">
-  PDF
-</a>
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-<a class="btn btn-outline-primary btn-page-header" href="/slides/EscapingSaddlePoints_CompleteFV.pdf" target="_blank" rel="noopener">
-  Slides
-</a>
-
-
-
-
-
-
 
 </div>
 
 
-</div>
-
-
-<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 357px;">
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 567px;">
   <div style="position: relative">
-    <img src="/project/example/featured_hu530fafcbce52a9c80aad6804c87fb987_324983_720x0_resize_lanczos_2.png" alt="" class="featured-image">
-    <span class="article-header-caption">Gradient Descent gets stuck in saddle points</span>
+    <img src="/project/sensing_uncertainty/featured_hu4158b11a77bfdbda3bd02fc0d96ddafd_494350_720x0_resize_lanczos_2.png" alt="" class="featured-image">
+    <span class="article-header-caption">Planning a robust trajectory for the Fetch robot when obstacles are uncertain in their poses</span>
   </div>
 </div>
 
@@ -808,8 +760,195 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>This project provides a literature review for the most important recent works related to optimizing high-dimensional non-convex functions in the presence of saddle points mostly for machine learning applications.</p>
-<p>The inspiration came from reviewing the paper &ldquo;How to Escape Saddle Points Efficiently?&rdquo;. A large research effort has been devoted to proposed methods that can converge to second order stationary points efficiently. Of special interest is the set of methods that do not rely on Hessian computation, mainly driven by applications in machine learning where this may not be feasible. Although, many important theoretical results have been proposed, many of them have not be tested in real experiments, especially in the context of training a deep neural network. We have designed experiments with different network architectures and state-of-the-art datasets to observe the behavior of perturbed versions of gradient descent. Initial results show that an improvement in experimental convergence rate can be seen only for small and shallow networks.</p>
+      <p>Motion planning for high degree-of-freedom ( DOF ) robots is challenging, especially when acting in complex environments under sensing uncertainty. While there is significant work on how to plan under state uncertainty for low- DOF robots, existing methods cannot be easily translated into the high-DOF case, due to the complex geometry of the robot’s body and its environment.</p>
+<p>The figure above shows an example of a Fetch robot performing manipulation tasks in a table environment. The objects on top of the table are subject to sensing uncertainty in the direction shown by the arrow. The objective is to find a plan to move the green can from its starting position (to the left of the robot) to its goal position, while taking into account the object&rsquo;s uncertainty.
+The shown trajectory was computed by our proposed method Robust Optimization-based Motion Planner (ROMP).</p>
+<p>When we have perfect information about the location of objects in a given scene, motion planning methods provide an efficient way to solve our high-DOF manipulation problem. Sampling-based and Optimization-based methods stand out for this task. The former methods, build connectivity information in the robot&rsquo;s configuration space by means of random sample and use such information to find a path between start and goal. The latter methods optimize cost functions that encourage smooth trajectories constrained to stay collision-free. RRT-Connect and TrajOpt are representatives of each category.</p>
+<p>The figure below shows top views of Fetch trajectories found by RRT-Connect, TrajOpt and the proposed ROMP, for our manipulation example. Importantly for this application, all planners generate trajectories that go close to the noisy obstacle. This is achieved by using a shortcut heuristic to the plan returned by RRT-Connect. TrajOpt on the other hand naturally encourages short trajectories. It can be seen that ROMP&rsquo;s trajectory stays further away from the noisy object.</p>
+<p>The target here is not to compare the proposed approach with existing methods. That would not be a fair comparison since they are unaware of the obstacles' uncertainty. Our objective is to provide a method to incorporate this type of uncertainty when planning and highlight its benefits compared to not taking the uncertainty into account.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-top-view-of-trajectories-generated-by-different-planners-in-the-manipulation-task">
+
+
+  <a data-fancybox="" href="/project/sensing_uncertainty/FetchFront_hud4235b7ca7007213d0cc402bf8f38ff2_452583_2000x2000_fit_lanczos_2.png" data-caption="Top view of trajectories generated by different planners in the manipulation task">
+
+
+  <img data-src="/project/sensing_uncertainty/FetchFront_hud4235b7ca7007213d0cc402bf8f38ff2_452583_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="1322" height="640">
+</a>
+
+
+  
+  
+  <figcaption>
+    Top view of trajectories generated by different planners in the manipulation task
+  </figcaption>
+
+
+</figure>
+
+<p><strong>How does ROMP work?</strong></p>
+<p>ROMP can be thought of as an extension of optimization-based planners to account for uncertainty information. It is based on sequential convex optimization (SCO), where the non-convex collision avoidance constraints are linearized around the current solution and a quadratic program is solved at every iteration. A key difference with respect to optimization-based uncertainty unaware planners (e.g., TrajOpt) is that at every iteration of the SCO problem, ROMP creates a robust optimization formulation that protects the solution of the convex subproblem to uncertainty in the problem parameters. The uncertainty of this parameters comes from the uncertainty in the signed distance function between the noisy obstacle and the robot&rsquo;s links and is assumed to be bounded. In its current version, the uncertain parameters lie in a cardinality constrained set.</p>
+<p>Two important aspects make ROMP attractive to be used for robust motion planning. On one hand, it can be applied to high-DOF robots since its formulation leverages the signed distance collision-avoidance constraints proposed by the authors of TrajOpt. Other robust planners in the literature assume that the robot can be modeled as a point in the task space. This assumption works well for applications where the robot&rsquo;s body is small compared to its environment (e.g., drones or small car-like robots), but is not suitable for manipulators made of complex geometry. On the other hand, ROMP does not require the sensing uncertainty to be modeled using Gaussian noise (or other specific type of probability distribution). Its only assumption is that the uncertainty of the parameters is bounded and that one can have access to sample from the distribution. Most methods in the literature require the Gaussianity assumption, which may limit their applicability.</p>
+<p>At each iteration, ROMP solves the following convex optimization problem:</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-robust-optimization-convex-subproblem-solved-by-romp">
+
+
+  <a data-fancybox="" href="/project/sensing_uncertainty/Formulation_hub51e6b2315bd2a9997b8fad7e1caef64_30633_2000x2000_fit_lanczos_2.png" data-caption="Robust Optimization convex subproblem solved by ROMP">
+
+
+  <img data-src="/project/sensing_uncertainty/Formulation_hub51e6b2315bd2a9997b8fad7e1caef64_30633_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="600" height="181">
+</a>
+
+
+  
+  
+  <figcaption>
+    Robust Optimization convex subproblem solved by ROMP
+  </figcaption>
+
+
+</figure>
+
+<p>The parameters of this robust formulation need to be estimated at every iteration. This can be achieved by allowing ROMP to sample from the distribution of the noisy objects and keeping the maximum deviation of each parameters from its expected value. ROMP also modifies the actual merit function to account for the additional robust terms being added to the convex subproblems to enable convergence of the SCO algorithm.</p>
+<p><strong>Some experiments</strong></p>
+<p>We performed experiments to assess the performance of ROMP to a different set of noise models. To this end, we created a nominal scene of the fetch robot example and solved the motion planning problem using RRT-Connect, TrajOpt and ROMP. Then, we evaluated the probability of collision of such trajectories for both Gaussian and Uniform noise for a wide set of the distribution parameters using Monte Carlo experiments for 5000 samples for each distribution. The results can be shown in the figure below:</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-monte-carlo-results-for-the-uncertain-motion-planning-manipulation-task">
+
+
+  <a data-fancybox="" href="/project/sensing_uncertainty/fetch_translational_results_hu91884ff7bef662116ba39e4cb4d3a611_204645_2000x2000_fit_lanczos_2.png" data-caption="Monte Carlo results for the uncertain motion planning manipulation task">
+
+
+  <img data-src="/project/sensing_uncertainty/fetch_translational_results_hu91884ff7bef662116ba39e4cb4d3a611_204645_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="1753" height="497">
+</a>
+
+
+  
+  
+  <figcaption>
+    Monte Carlo results for the uncertain motion planning manipulation task
+  </figcaption>
+
+
+</figure>
+
+<p>It can be seen that ROMP successfully maintain a low probability of collision for all the distribution parameters (Gaussian on the left, Uniform on the center). Additionally, the figure on the right shows the average distance to collision between the robot and the noisy object for each trajectory waypoint and its standard deviation for both TrajOpt and ROMP.</p>
+<p>The figure below show examples of more trajectories computed by the planners for the same task but when the grasp pose is different.</p>
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<figure id="figure-robust-optimization-convex-subproblem-solved-by-romp">
+
+
+  <a data-fancybox="" href="/project/sensing_uncertainty/FetchTop_hue0ec0193e3d4fa08636043586b129210_444430_2000x2000_fit_lanczos_2.png" data-caption="Robust Optimization convex subproblem solved by ROMP">
+
+
+  <img data-src="/project/sensing_uncertainty/FetchTop_hue0ec0193e3d4fa08636043586b129210_444430_2000x2000_fit_lanczos_2.png" class="lazyload" alt="" width="1663" height="760">
+</a>
+
+
+  
+  
+  <figcaption>
+    Robust Optimization convex subproblem solved by ROMP
+  </figcaption>
+
+
+</figure>
+
+<p>It can be noticed that similar to the previous example, RRT-Connect and TrajOpt find trajectories that go very close to the obstacle. ROMP however, pushes the trajectory closer to the robot&rsquo;s body to account for the uncertainty in the direction of the noise. The following video shows the trajectory traces.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/IUuDnYvw2Ow" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
 
     </div>
 
@@ -822,11 +961,9 @@
 
 <div class="article-tags">
   
-  <a class="badge badge-light" href="/tag/deep-learning/">Deep Learning</a>
-  
   <a class="badge badge-light" href="/tag/optimization/">Optimization</a>
   
-  <a class="badge badge-light" href="/tag/gradient-descent/">Gradient Descent</a>
+  <a class="badge badge-light" href="/tag/motion-planning/">Motion Planning</a>
   
 </div>
 
@@ -843,7 +980,7 @@
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/project/example/&amp;text=Can%20Theoretical%20Algorithms%20Efficiently%20Escape%20Saddle%20Points%20in%20Deep%20Learning?" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=/project/sensing_uncertainty/&amp;text=Robust%20Motion%20Planning%20under%20Sensing%20Uncertainty" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -856,7 +993,7 @@
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/project/example/&amp;t=Can%20Theoretical%20Algorithms%20Efficiently%20Escape%20Saddle%20Points%20in%20Deep%20Learning?" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=/project/sensing_uncertainty/&amp;t=Robust%20Motion%20Planning%20under%20Sensing%20Uncertainty" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -869,7 +1006,7 @@
       
       
       <li>
-        <a href="mailto:?subject=Can%20Theoretical%20Algorithms%20Efficiently%20Escape%20Saddle%20Points%20in%20Deep%20Learning?&amp;body=/project/example/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=Robust%20Motion%20Planning%20under%20Sensing%20Uncertainty&amp;body=/project/sensing_uncertainty/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -882,7 +1019,7 @@
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/project/example/&amp;title=Can%20Theoretical%20Algorithms%20Efficiently%20Escape%20Saddle%20Points%20in%20Deep%20Learning?" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=/project/sensing_uncertainty/&amp;title=Robust%20Motion%20Planning%20under%20Sensing%20Uncertainty" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -895,7 +1032,7 @@
       
       
       <li>
-        <a href="whatsapp://send?text=Can%20Theoretical%20Algorithms%20Efficiently%20Escape%20Saddle%20Points%20in%20Deep%20Learning?%20/project/example/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="whatsapp://send?text=Robust%20Motion%20Planning%20under%20Sensing%20Uncertainty%20/project/sensing_uncertainty/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -908,7 +1045,7 @@
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/project/example/&amp;title=Can%20Theoretical%20Algorithms%20Efficiently%20Escape%20Saddle%20Points%20in%20Deep%20Learning?" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=/project/sensing_uncertainty/&amp;title=Robust%20Motion%20Planning%20under%20Sensing%20Uncertainty" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -1026,31 +1163,6 @@
 
 
   
-    
-
-
-
-  
-  
-  
-  
-  
-  <div class="media author-card content-widget-hr">
-    
-
-    <div class="media-body">
-      <h5 class="card-title">Sean Farrell</h5>
-      <h6 class="card-subtitle">PhD Student in Electrical Engineering</h6>
-      
-      <ul class="network-icon" aria-hidden="true">
-  
-</ul>
-
-    </div>
-  </div>
-
-
-  
 
 
 
@@ -1071,9 +1183,9 @@
     <h3>Related</h3>
     <ul>
       
-      <li><a href="/project/pruning/">Neural Network Pruning - A review</a></li>
+      <li><a href="/project/example/">Can Theoretical Algorithms Efficiently Escape Saddle Points in Deep Learning?</a></li>
       
-      <li><a href="/project/sensing_uncertainty/">Robust Motion Planning under Sensing Uncertainty</a></li>
+      <li><a href="/project/incomplete-sensing/">Motion Planning with incomplete scene information</a></li>
       
     </ul>
   </div>
