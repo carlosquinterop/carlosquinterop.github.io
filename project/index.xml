@@ -23,6 +23,24 @@
     </item>
     
     <item>
+      <title>Inverse Kinematics Robo Picasso</title>
+      <link>/project/robo-picasso/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>/project/robo-picasso/</guid>
+      <description>&lt;p&gt;This project was a lab assignment in the course &lt;strong&gt;MECH 498: Introduction to Robotics&lt;/strong&gt; that I took during the Spring of 2020 offered by &lt;a href=&#34;https://omalleym.web.rice.edu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Dr. Marcia O&amp;rsquo;Malley&lt;/a&gt;. I thought this project was a lot of fun and so I decided to share the main results here.
+The assignment was about computing the inverse kinematics (IK) problem for a 6-DOF FANUC S-500 robot shown above.&lt;/p&gt;
+&lt;p&gt;The project was coded using MATLAB where we were given a model of the FANUC robot and were asked to implement both its forward kinematics and inverse kinematics.
+The robot is provided with a drawing tool attached to its end-effector with 4 different brushes and the objective is to give the robot a 3D discretized path that contains the points that make the drawing (a Mickey Mouse face in our case!), so that the robot can draw it. By solving an IK problem for each point in the trajectory and plot them all we can see how the robot model draws the given trajectory. Notice that there are additional challenges to avoid the robot to change between &amp;lsquo;elbow up&amp;rsquo; and &amp;lsquo;elbow down&amp;rsquo; configurations in consecutive points of the trajectory.&lt;/p&gt;
+&lt;p&gt;To make it slightly more interesting we decided to make the robot plot in two different planes for the same drawing, similar to paintings that are drawn in the corner of a room. Checkout the video to see our robot painting the Mickey Mouse face between two walls and notice how the orientation of the tool is changed when the second half of the face is being painted.&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/ibtgLo-S1uE&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
       <title>Motion Planning with incomplete scene information</title>
       <link>/project/incomplete-sensing/</link>
       <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
@@ -352,7 +370,7 @@ The shown trajectory was computed by our proposed method Robust Optimization-bas
 
 &lt;/figure&gt;
 
-&lt;p&gt;&lt;strong&gt;How does ROMP work?&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;how-does-romp-work&#34;&gt;How does ROMP work?&lt;/h2&gt;
 &lt;p&gt;ROMP can be thought of as an extension of optimization-based planners to account for uncertainty information. It is based on sequential convex optimization (SCO), where the non-convex collision avoidance constraints are linearized around the current solution and a quadratic program is solved at every iteration. A key difference with respect to optimization-based uncertainty unaware planners (e.g., TrajOpt) is that at every iteration of the SCO problem, ROMP creates a robust optimization formulation that protects the solution of the convex subproblem to uncertainty in the problem parameters. The uncertainty of this parameters comes from the uncertainty in the signed distance function between the noisy obstacle and the robot&amp;rsquo;s links and is assumed to be bounded. In its current version, the uncertain parameters lie in a cardinality constrained set.&lt;/p&gt;
 &lt;p&gt;Two important aspects make ROMP attractive to be used for robust motion planning. On one hand, it can be applied to high-DOF robots since its formulation leverages the signed distance collision-avoidance constraints proposed by the authors of TrajOpt. Other robust planners in the literature assume that the robot can be modeled as a point in the task space. This assumption works well for applications where the robot&amp;rsquo;s body is small compared to its environment (e.g., drones or small car-like robots), but is not suitable for manipulators made of complex geometry. On the other hand, ROMP does not require the sensing uncertainty to be modeled using Gaussian noise (or other specific type of probability distribution). Its only assumption is that the uncertainty of the parameters is bounded and that one can have access to sample from the distribution. Most methods in the literature require the Gaussianity assumption, which may limit their applicability.&lt;/p&gt;
 &lt;p&gt;At each iteration, ROMP solves the following convex optimization problem:&lt;/p&gt;
@@ -399,7 +417,7 @@ The shown trajectory was computed by our proposed method Robust Optimization-bas
 &lt;/figure&gt;
 
 &lt;p&gt;The parameters of this robust formulation need to be estimated at every iteration. This can be achieved by allowing ROMP to sample from the distribution of the noisy objects and keeping the maximum deviation of each parameters from its expected value. ROMP also modifies the actual merit function to account for the additional robust terms being added to the convex subproblems to enable convergence of the SCO algorithm.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Some experiments&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;some-experiments&#34;&gt;Some experiments&lt;/h2&gt;
 &lt;p&gt;We performed experiments to assess the performance of ROMP to a different set of noise models. To this end, we created a nominal scene of the fetch robot example and solved the motion planning problem using RRT-Connect, TrajOpt and ROMP. Then, we evaluated the probability of collision of such trajectories for both Gaussian and Uniform noise for a wide set of the distribution parameters using Monte Carlo experiments for 5000 samples for each distribution. The results can be shown in the figure below:&lt;/p&gt;
 
 

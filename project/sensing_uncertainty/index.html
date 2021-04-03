@@ -289,7 +289,7 @@
     
       <meta property="article:published_time" content="2021-01-11T00:00:00&#43;00:00">
     
-    <meta property="article:modified_time" content="2021-04-02T21:17:22-05:00">
+    <meta property="article:modified_time" content="2021-04-02T23:28:56-05:00">
   
 
   
@@ -320,7 +320,7 @@
   ],
   
   "datePublished": "2021-01-11T00:00:00Z",
-  "dateModified": "2021-04-02T21:17:22-05:00",
+  "dateModified": "2021-04-02T23:28:56-05:00",
   
   "author": {
     "@type": "Person",
@@ -808,7 +808,7 @@ The shown trajectory was computed by our proposed method Robust Optimization-bas
 
 </figure>
 
-<p><strong>How does ROMP work?</strong></p>
+<h2 id="how-does-romp-work">How does ROMP work?</h2>
 <p>ROMP can be thought of as an extension of optimization-based planners to account for uncertainty information. It is based on sequential convex optimization (SCO), where the non-convex collision avoidance constraints are linearized around the current solution and a quadratic program is solved at every iteration. A key difference with respect to optimization-based uncertainty unaware planners (e.g., TrajOpt) is that at every iteration of the SCO problem, ROMP creates a robust optimization formulation that protects the solution of the convex subproblem to uncertainty in the problem parameters. The uncertainty of this parameters comes from the uncertainty in the signed distance function between the noisy obstacle and the robot&rsquo;s links and is assumed to be bounded. In its current version, the uncertain parameters lie in a cardinality constrained set.</p>
 <p>Two important aspects make ROMP attractive to be used for robust motion planning. On one hand, it can be applied to high-DOF robots since its formulation leverages the signed distance collision-avoidance constraints proposed by the authors of TrajOpt. Other robust planners in the literature assume that the robot can be modeled as a point in the task space. This assumption works well for applications where the robot&rsquo;s body is small compared to its environment (e.g., drones or small car-like robots), but is not suitable for manipulators made of complex geometry. On the other hand, ROMP does not require the sensing uncertainty to be modeled using Gaussian noise (or other specific type of probability distribution). Its only assumption is that the uncertainty of the parameters is bounded and that one can have access to sample from the distribution. Most methods in the literature require the Gaussianity assumption, which may limit their applicability.</p>
 <p>At each iteration, ROMP solves the following convex optimization problem:</p>
@@ -855,7 +855,7 @@ The shown trajectory was computed by our proposed method Robust Optimization-bas
 </figure>
 
 <p>The parameters of this robust formulation need to be estimated at every iteration. This can be achieved by allowing ROMP to sample from the distribution of the noisy objects and keeping the maximum deviation of each parameters from its expected value. ROMP also modifies the actual merit function to account for the additional robust terms being added to the convex subproblems to enable convergence of the SCO algorithm.</p>
-<p><strong>Some experiments</strong></p>
+<h2 id="some-experiments">Some experiments</h2>
 <p>We performed experiments to assess the performance of ROMP to a different set of noise models. To this end, we created a nominal scene of the fetch robot example and solved the motion planning problem using RRT-Connect, TrajOpt and ROMP. Then, we evaluated the probability of collision of such trajectories for both Gaussian and Uniform noise for a wide set of the distribution parameters using Monte Carlo experiments for 5000 samples for each distribution. The results can be shown in the figure below:</p>
 
 
@@ -964,6 +964,8 @@ The shown trajectory was computed by our proposed method Robust Optimization-bas
   <a class="badge badge-light" href="/tag/optimization/">Optimization</a>
   
   <a class="badge badge-light" href="/tag/motion-planning/">Motion Planning</a>
+  
+  <a class="badge badge-light" href="/tag/robotics/">Robotics</a>
   
 </div>
 
@@ -1183,9 +1185,11 @@ The shown trajectory was computed by our proposed method Robust Optimization-bas
     <h3>Related</h3>
     <ul>
       
+      <li><a href="/project/incomplete-sensing/">Motion Planning with incomplete scene information</a></li>
+      
       <li><a href="/project/example/">Can Theoretical Algorithms Efficiently Escape Saddle Points in Deep Learning?</a></li>
       
-      <li><a href="/project/incomplete-sensing/">Motion Planning with incomplete scene information</a></li>
+      <li><a href="/project/robo-picasso/">Inverse Kinematics Robo Picasso</a></li>
       
     </ul>
   </div>
