@@ -7,7 +7,7 @@
     <description>Sensing Uncertainty</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Sensing Uncertainty</title>
       <link>/tag/sensing-uncertainty/</link>
     </image>
@@ -61,10 +61,10 @@
 &lt;figure id=&#34;figure-scene-and-fetch-robot-in-gazebo-simulator&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/SceneGazebo_hu624e92eda7290956e26acba8c5dafb5e_567015_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Scene and Fetch robot in Gazebo simulator&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/SceneGazebo_hu624e92eda7290956e26acba8c5dafb5e_567015_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Scene and Fetch robot in Gazebo simulator&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/incomplete-sensing/SceneGazebo_hu624e92eda7290956e26acba8c5dafb5e_567015_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1245&#34; height=&#34;864&#34;&gt;
+  &lt;img data-src=&#34;/project/incomplete-sensing/SceneGazebo_hu624e92eda7290956e26acba8c5dafb5e_567015_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1245&#34; height=&#34;864&#34;&gt;
 &lt;/a&gt;
 
 
@@ -103,10 +103,10 @@
 &lt;figure id=&#34;figure-octomap-representation-of-the-scene-obtained-by-the-on-board-rgb-d-camera-of-the-robot&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/SceneRViz_hu08996a00c9db8f55ee9acda2566b8ddc_179214_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Octomap representation of the scene obtained by the on-board RGB-D camera of the robot&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/SceneRViz_hu08996a00c9db8f55ee9acda2566b8ddc_179214_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Octomap representation of the scene obtained by the on-board RGB-D camera of the robot&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/incomplete-sensing/SceneRViz_hu08996a00c9db8f55ee9acda2566b8ddc_179214_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1340&#34; height=&#34;874&#34;&gt;
+  &lt;img data-src=&#34;/project/incomplete-sensing/SceneRViz_hu08996a00c9db8f55ee9acda2566b8ddc_179214_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1340&#34; height=&#34;874&#34;&gt;
 &lt;/a&gt;
 
 
@@ -148,10 +148,10 @@
 &lt;figure id=&#34;figure-diagram-showing-the-main-steps-of-the-proposed-methodology&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/Diagram_hu654b006f9a72dc7f3e05133911643e78_103543_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Diagram showing the main steps of the proposed methodology&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/Diagram_hu654b006f9a72dc7f3e05133911643e78_103543_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Diagram showing the main steps of the proposed methodology&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/incomplete-sensing/Diagram_hu654b006f9a72dc7f3e05133911643e78_103543_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1439&#34; height=&#34;1056&#34;&gt;
+  &lt;img data-src=&#34;/project/incomplete-sensing/Diagram_hu654b006f9a72dc7f3e05133911643e78_103543_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1439&#34; height=&#34;1056&#34;&gt;
 &lt;/a&gt;
 
 
@@ -198,10 +198,10 @@
 &lt;figure id=&#34;figure-fetch-robot-looking-at-interesting-unknown-points-of-the-swept-out-volume-of-the-computed-trajectory&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/Swept-out_hu367fbd22664606b4cec7a0528999f531_644752_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Fetch robot looking at interesting unknown points of the swept-out volume of the computed trajectory&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/Swept-out_hu367fbd22664606b4cec7a0528999f531_644752_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Fetch robot looking at interesting unknown points of the swept-out volume of the computed trajectory&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/incomplete-sensing/Swept-out_hu367fbd22664606b4cec7a0528999f531_644752_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1331&#34; height=&#34;1127&#34;&gt;
+  &lt;img data-src=&#34;/project/incomplete-sensing/Swept-out_hu367fbd22664606b4cec7a0528999f531_644752_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1331&#34; height=&#34;1127&#34;&gt;
 &lt;/a&gt;
 
 
@@ -243,10 +243,10 @@
 &lt;figure id=&#34;figure-results-of-50-runs-for-the-proposed-methodology-for-completing-the-scene-for-the-4-different-explored-strategies&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/TableResults_hu17d347cdac24f94a8aed3b549cd3788b_83210_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Results of $50$ runs for the proposed methodology for completing the scene for the 4 different explored strategies&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/TableResults_hu17d347cdac24f94a8aed3b549cd3788b_83210_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Results of $50$ runs for the proposed methodology for completing the scene for the 4 different explored strategies&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/incomplete-sensing/TableResults_hu17d347cdac24f94a8aed3b549cd3788b_83210_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1051&#34; height=&#34;244&#34;&gt;
+  &lt;img data-src=&#34;/project/incomplete-sensing/TableResults_hu17d347cdac24f94a8aed3b549cd3788b_83210_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1051&#34; height=&#34;244&#34;&gt;
 &lt;/a&gt;
 
 
