@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pruning | Carlos Quintero-Peña</title>
-    <link>/tag/pruning/</link>
-      <atom:link href="/tag/pruning/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://carlosquinterop.github.io/tag/pruning/</link>
+      <atom:link href="https://carlosquinterop.github.io/tag/pruning/index.xml" rel="self" type="application/rss+xml" />
     <description>Pruning</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <url>https://carlosquinterop.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Pruning</title>
-      <link>/tag/pruning/</link>
+      <link>https://carlosquinterop.github.io/tag/pruning/</link>
     </image>
     
     <item>
       <title>Neural Network Pruning - A review</title>
-      <link>/project/pruning/</link>
+      <link>https://carlosquinterop.github.io/project/pruning/</link>
       <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/project/pruning/</guid>
+      <guid>https://carlosquinterop.github.io/project/pruning/</guid>
       <description>&lt;p&gt;Machine learning - and especially deep learning - is a big trend these days; not only in research, but in many other domains. Large companies, start-ups, governments and many other actors have realized the importance on the use of massive available data to leverage their businesses and achieve more complex tasks than before. During the last decade, the size of machine learning models and the amount of data that they can efficiently process have significantly increased, in part due to the highly notable improvement of hardware technology especially tailored to meet the need of these models. Distributed computing has been an important resource to build large machine learning models. However, it is still not clear how to efficiently split the parameters of giant networks across distributed computing resources to achieve efficient training results. The nature of the gradient descent algorithm, that requires dense and sequential updates, leads to communication bottlenecks or accuracy degradation. Ideally, we would have asynchronous updates without hurting performance.&lt;/p&gt;
 &lt;p&gt;Other type of important applications for large machine learning models is in the mobile phones and low-resource devices. In these cases it is extremely important that training and inference costs (i.e., the costs of using the model to predict new values) are energy-efficient, since these may be implemented by the user in their own devices and long lasting battery life is a key requirement. Graphic Processing Units (GPU) are capable of achieving large amounts of computational operations, including matrix multiplication which is a key operation in training/inference processes of a Deep Neural Network (DNN). However, they are not, in general, energy-efficient. Only expecting that hardware designers reduce the energy cost of these operations at the hardware level is not possible since these enhancements may be slow, are mostly driven by commercial demands and may be highly expensive and risky.&lt;/p&gt;
 &lt;p&gt;An important common ground for the two scenarios described above is the fact that there are limits for hardware acceleration for machine learning models, either because algorithm characteristics restrict the massive parallelization on large distributed systems with high communication costs or because powerful available hardware are not very energy-efficient when building and evaluating machine learning models. One solution that will be discussed is to mostly rely on algorithmic improvements rather than only hardware acceleration.&lt;/p&gt;

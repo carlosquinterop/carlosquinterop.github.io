@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Carlos Quintero-Peña</title>
-    <link>/</link>
-      <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://carlosquinterop.github.io/</link>
+      <atom:link href="https://carlosquinterop.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Carlos Quintero-Peña</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <url>https://carlosquinterop.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Carlos Quintero-Peña</title>
-      <link>/</link>
+      <link>https://carlosquinterop.github.io/</link>
     </image>
     
     <item>
       <title>Can Theoretical Algorithms Efficiently Escape Saddle Points in Deep Learning?</title>
-      <link>/project/example/</link>
+      <link>https://carlosquinterop.github.io/project/example/</link>
       <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/project/example/</guid>
+      <guid>https://carlosquinterop.github.io/project/example/</guid>
       <description>&lt;p&gt;This project provides a literature review for the most important recent works related to optimizing high-dimensional non-convex functions in the presence of saddle points mostly for machine learning applications.&lt;/p&gt;
 &lt;p&gt;The inspiration came from reviewing the paper &amp;ldquo;How to Escape Saddle Points Efficiently?&amp;rdquo;. A large research effort has been devoted to proposed methods that can converge to second order stationary points efficiently. Of special interest is the set of methods that do not rely on Hessian computation, mainly driven by applications in machine learning where this may not be feasible. Although, many important theoretical results have been proposed, many of them have not be tested in real experiments, especially in the context of training a deep neural network. We have designed experiments with different network architectures and state-of-the-art datasets to observe the behavior of perturbed versions of gradient descent. Initial results show that an improvement in experimental convergence rate can be seen only for small and shallow networks.&lt;/p&gt;
 </description>
@@ -24,9 +24,9 @@
     
     <item>
       <title>Inverse Kinematics Robo Picasso</title>
-      <link>/project/robo-picasso/</link>
+      <link>https://carlosquinterop.github.io/project/robo-picasso/</link>
       <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/project/robo-picasso/</guid>
+      <guid>https://carlosquinterop.github.io/project/robo-picasso/</guid>
       <description>&lt;p&gt;This project was a lab assignment in the course &lt;strong&gt;MECH 498: Introduction to Robotics&lt;/strong&gt; that I took during the Spring of 2020 offered by &lt;a href=&#34;https://omalleym.web.rice.edu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Dr. Marcia O&amp;rsquo;Malley&lt;/a&gt;. I thought this project was a lot of fun and so I decided to share the main results here.
 The assignment was about computing the inverse kinematics (IK) problem for a 6-DOF FANUC S-500 robot shown above.&lt;/p&gt;
 &lt;p&gt;The project was coded using MATLAB where we were given a model of the FANUC robot and were asked to implement both its forward kinematics and inverse kinematics.
@@ -42,9 +42,9 @@ The robot is provided with a drawing tool attached to its end-effector with 4 di
     
     <item>
       <title>Motion Planning with incomplete scene information</title>
-      <link>/project/incomplete-sensing/</link>
+      <link>https://carlosquinterop.github.io/project/incomplete-sensing/</link>
       <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/project/incomplete-sensing/</guid>
+      <guid>https://carlosquinterop.github.io/project/incomplete-sensing/</guid>
       <description>&lt;p&gt;The objective of the project is to simulate the Fetch robot in a realistic environment considering uncertainty. In order to accomplish this we needed to take into account the complexity of a real robotic platform, starting with the topics covered during the course, i.e., kinematics, dynamics, control, but also others that were either briefly discussed or not at all, such as sensing, localization, motion planning, etc. Instead of building or analyzing all of these from scratch for the Fetch robot, we used a large software stack based on ROS (Robot Operating System). In the project, all of these were integrated in order to solve the problem of successfully planning and executing a grasping task in the presence of uncertain obstacles. The following are the main software components of the solution and a brief description of what was done in this project with each one:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -89,10 +89,10 @@ The robot is provided with a drawing tool attached to its end-effector with 4 di
 &lt;figure id=&#34;figure-scene-and-fetch-robot-in-gazebo-simulator&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/SceneGazebo_hu624e92eda7290956e26acba8c5dafb5e_567015_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Scene and Fetch robot in Gazebo simulator&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/incomplete-sensing/SceneGazebo_hu624e92eda7290956e26acba8c5dafb5e_567015_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Scene and Fetch robot in Gazebo simulator&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/incomplete-sensing/SceneGazebo_hu624e92eda7290956e26acba8c5dafb5e_567015_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1245&#34; height=&#34;864&#34;&gt;
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/incomplete-sensing/SceneGazebo_hu624e92eda7290956e26acba8c5dafb5e_567015_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1245&#34; height=&#34;864&#34;&gt;
 &lt;/a&gt;
 
 
@@ -131,10 +131,10 @@ The robot is provided with a drawing tool attached to its end-effector with 4 di
 &lt;figure id=&#34;figure-octomap-representation-of-the-scene-obtained-by-the-on-board-rgb-d-camera-of-the-robot&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/SceneRViz_hu08996a00c9db8f55ee9acda2566b8ddc_179214_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Octomap representation of the scene obtained by the on-board RGB-D camera of the robot&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/incomplete-sensing/SceneRViz_hu08996a00c9db8f55ee9acda2566b8ddc_179214_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Octomap representation of the scene obtained by the on-board RGB-D camera of the robot&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/incomplete-sensing/SceneRViz_hu08996a00c9db8f55ee9acda2566b8ddc_179214_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1340&#34; height=&#34;874&#34;&gt;
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/incomplete-sensing/SceneRViz_hu08996a00c9db8f55ee9acda2566b8ddc_179214_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1340&#34; height=&#34;874&#34;&gt;
 &lt;/a&gt;
 
 
@@ -176,10 +176,10 @@ The robot is provided with a drawing tool attached to its end-effector with 4 di
 &lt;figure id=&#34;figure-diagram-showing-the-main-steps-of-the-proposed-methodology&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/Diagram_hu654b006f9a72dc7f3e05133911643e78_103543_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Diagram showing the main steps of the proposed methodology&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/incomplete-sensing/Diagram_hu654b006f9a72dc7f3e05133911643e78_103543_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Diagram showing the main steps of the proposed methodology&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/incomplete-sensing/Diagram_hu654b006f9a72dc7f3e05133911643e78_103543_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1439&#34; height=&#34;1056&#34;&gt;
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/incomplete-sensing/Diagram_hu654b006f9a72dc7f3e05133911643e78_103543_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1439&#34; height=&#34;1056&#34;&gt;
 &lt;/a&gt;
 
 
@@ -226,10 +226,10 @@ The robot is provided with a drawing tool attached to its end-effector with 4 di
 &lt;figure id=&#34;figure-fetch-robot-looking-at-interesting-unknown-points-of-the-swept-out-volume-of-the-computed-trajectory&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/Swept-out_hu367fbd22664606b4cec7a0528999f531_644752_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Fetch robot looking at interesting unknown points of the swept-out volume of the computed trajectory&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/incomplete-sensing/Swept-out_hu367fbd22664606b4cec7a0528999f531_644752_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Fetch robot looking at interesting unknown points of the swept-out volume of the computed trajectory&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/incomplete-sensing/Swept-out_hu367fbd22664606b4cec7a0528999f531_644752_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1331&#34; height=&#34;1127&#34;&gt;
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/incomplete-sensing/Swept-out_hu367fbd22664606b4cec7a0528999f531_644752_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1331&#34; height=&#34;1127&#34;&gt;
 &lt;/a&gt;
 
 
@@ -271,10 +271,10 @@ The robot is provided with a drawing tool attached to its end-effector with 4 di
 &lt;figure id=&#34;figure-results-of-50-runs-for-the-proposed-methodology-for-completing-the-scene-for-the-4-different-explored-strategies&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/incomplete-sensing/TableResults_hu17d347cdac24f94a8aed3b549cd3788b_83210_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Results of $50$ runs for the proposed methodology for completing the scene for the 4 different explored strategies&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/incomplete-sensing/TableResults_hu17d347cdac24f94a8aed3b549cd3788b_83210_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Results of $50$ runs for the proposed methodology for completing the scene for the 4 different explored strategies&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/incomplete-sensing/TableResults_hu17d347cdac24f94a8aed3b549cd3788b_83210_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1051&#34; height=&#34;244&#34;&gt;
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/incomplete-sensing/TableResults_hu17d347cdac24f94a8aed3b549cd3788b_83210_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1051&#34; height=&#34;244&#34;&gt;
 &lt;/a&gt;
 
 
@@ -298,9 +298,9 @@ The robot is provided with a drawing tool attached to its end-effector with 4 di
     
     <item>
       <title>Neural Network Pruning - A review</title>
-      <link>/project/pruning/</link>
+      <link>https://carlosquinterop.github.io/project/pruning/</link>
       <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/project/pruning/</guid>
+      <guid>https://carlosquinterop.github.io/project/pruning/</guid>
       <description>&lt;p&gt;Machine learning - and especially deep learning - is a big trend these days; not only in research, but in many other domains. Large companies, start-ups, governments and many other actors have realized the importance on the use of massive available data to leverage their businesses and achieve more complex tasks than before. During the last decade, the size of machine learning models and the amount of data that they can efficiently process have significantly increased, in part due to the highly notable improvement of hardware technology especially tailored to meet the need of these models. Distributed computing has been an important resource to build large machine learning models. However, it is still not clear how to efficiently split the parameters of giant networks across distributed computing resources to achieve efficient training results. The nature of the gradient descent algorithm, that requires dense and sequential updates, leads to communication bottlenecks or accuracy degradation. Ideally, we would have asynchronous updates without hurting performance.&lt;/p&gt;
 &lt;p&gt;Other type of important applications for large machine learning models is in the mobile phones and low-resource devices. In these cases it is extremely important that training and inference costs (i.e., the costs of using the model to predict new values) are energy-efficient, since these may be implemented by the user in their own devices and long lasting battery life is a key requirement. Graphic Processing Units (GPU) are capable of achieving large amounts of computational operations, including matrix multiplication which is a key operation in training/inference processes of a Deep Neural Network (DNN). However, they are not, in general, energy-efficient. Only expecting that hardware designers reduce the energy cost of these operations at the hardware level is not possible since these enhancements may be slow, are mostly driven by commercial demands and may be highly expensive and risky.&lt;/p&gt;
 &lt;p&gt;An important common ground for the two scenarios described above is the fact that there are limits for hardware acceleration for machine learning models, either because algorithm characteristics restrict the massive parallelization on large distributed systems with high communication costs or because powerful available hardware are not very energy-efficient when building and evaluating machine learning models. One solution that will be discussed is to mostly rely on algorithmic improvements rather than only hardware acceleration.&lt;/p&gt;
@@ -319,9 +319,9 @@ The robot is provided with a drawing tool attached to its end-effector with 4 di
     
     <item>
       <title>Robust Motion Planning under Sensing Uncertainty</title>
-      <link>/project/sensing_uncertainty/</link>
+      <link>https://carlosquinterop.github.io/project/sensing_uncertainty/</link>
       <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>/project/sensing_uncertainty/</guid>
+      <guid>https://carlosquinterop.github.io/project/sensing_uncertainty/</guid>
       <description>&lt;p&gt;Motion planning for high degree-of-freedom ( DOF ) robots is challenging, especially when acting in complex environments under sensing uncertainty. While there is significant work on how to plan under state uncertainty for low- DOF robots, existing methods cannot be easily translated into the high-DOF case, due to the complex geometry of the robot’s body and its environment.&lt;/p&gt;
 &lt;p&gt;The figure above shows an example of a Fetch robot performing manipulation tasks in a table environment. The objects on top of the table are subject to sensing uncertainty in the direction shown by the arrow. The objective is to find a plan to move the green can from its starting position (to the left of the robot) to its goal position, while taking into account the object&amp;rsquo;s uncertainty.
 The shown trajectory was computed by our proposed method Robust Optimization-based Motion Planner (ROMP).&lt;/p&gt;
@@ -354,10 +354,10 @@ The shown trajectory was computed by our proposed method Robust Optimization-bas
 &lt;figure id=&#34;figure-top-view-of-trajectories-generated-by-different-planners-in-the-manipulation-task&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/sensing_uncertainty/FetchFront_hud4235b7ca7007213d0cc402bf8f38ff2_452583_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Top view of trajectories generated by different planners in the manipulation task&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/sensing_uncertainty/FetchFront_hud4235b7ca7007213d0cc402bf8f38ff2_452583_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Top view of trajectories generated by different planners in the manipulation task&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/sensing_uncertainty/FetchFront_hud4235b7ca7007213d0cc402bf8f38ff2_452583_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1322&#34; height=&#34;640&#34;&gt;
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/sensing_uncertainty/FetchFront_hud4235b7ca7007213d0cc402bf8f38ff2_452583_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1322&#34; height=&#34;640&#34;&gt;
 &lt;/a&gt;
 
 
@@ -400,10 +400,10 @@ The shown trajectory was computed by our proposed method Robust Optimization-bas
 &lt;figure id=&#34;figure-robust-optimization-convex-subproblem-solved-by-romp&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/sensing_uncertainty/Formulation_hub51e6b2315bd2a9997b8fad7e1caef64_30633_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Robust Optimization convex subproblem solved by ROMP&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/sensing_uncertainty/Formulation_hub51e6b2315bd2a9997b8fad7e1caef64_30633_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Robust Optimization convex subproblem solved by ROMP&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/sensing_uncertainty/Formulation_hub51e6b2315bd2a9997b8fad7e1caef64_30633_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;600&#34; height=&#34;181&#34;&gt;
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/sensing_uncertainty/Formulation_hub51e6b2315bd2a9997b8fad7e1caef64_30633_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;600&#34; height=&#34;181&#34;&gt;
 &lt;/a&gt;
 
 
@@ -445,10 +445,10 @@ The shown trajectory was computed by our proposed method Robust Optimization-bas
 &lt;figure id=&#34;figure-monte-carlo-results-for-the-uncertain-motion-planning-manipulation-task&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/sensing_uncertainty/fetch_translational_results_hu91884ff7bef662116ba39e4cb4d3a611_204645_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Monte Carlo results for the uncertain motion planning manipulation task&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/sensing_uncertainty/fetch_translational_results_hu91884ff7bef662116ba39e4cb4d3a611_204645_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Monte Carlo results for the uncertain motion planning manipulation task&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/sensing_uncertainty/fetch_translational_results_hu91884ff7bef662116ba39e4cb4d3a611_204645_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1753&#34; height=&#34;497&#34;&gt;
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/sensing_uncertainty/fetch_translational_results_hu91884ff7bef662116ba39e4cb4d3a611_204645_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1753&#34; height=&#34;497&#34;&gt;
 &lt;/a&gt;
 
 
@@ -489,10 +489,10 @@ The shown trajectory was computed by our proposed method Robust Optimization-bas
 &lt;figure id=&#34;figure-robust-optimization-convex-subproblem-solved-by-romp&#34;&gt;
 
 
-  &lt;a data-fancybox=&#34;&#34; href=&#34;/project/sensing_uncertainty/FetchTop_hue0ec0193e3d4fa08636043586b129210_444430_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Robust Optimization convex subproblem solved by ROMP&#34;&gt;
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/sensing_uncertainty/FetchTop_hue0ec0193e3d4fa08636043586b129210_444430_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Robust Optimization convex subproblem solved by ROMP&#34;&gt;
 
 
-  &lt;img data-src=&#34;/project/sensing_uncertainty/FetchTop_hue0ec0193e3d4fa08636043586b129210_444430_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1663&#34; height=&#34;760&#34;&gt;
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/sensing_uncertainty/FetchTop_hue0ec0193e3d4fa08636043586b129210_444430_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1663&#34; height=&#34;760&#34;&gt;
 &lt;/a&gt;
 
 
