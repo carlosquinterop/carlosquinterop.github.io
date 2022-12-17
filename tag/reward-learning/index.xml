@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reward Learning | Carlos Quintero-Peña</title>
+    <link>https://carlosquinterop.github.io/tag/reward-learning/</link>
+      <atom:link href="https://carlosquinterop.github.io/tag/reward-learning/index.xml" rel="self" type="application/rss+xml" />
+    <description>Reward Learning</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 11 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://carlosquinterop.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Reward Learning</title>
+      <link>https://carlosquinterop.github.io/tag/reward-learning/</link>
+    </image>
+    
+    <item>
+      <title>Human-Guided Motion Planning in Partially Observable Environments</title>
+      <link>https://carlosquinterop.github.io/project/blind/</link>
+      <pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>https://carlosquinterop.github.io/project/blind/</guid>
+      <description>&lt;p&gt;This project is concerned with the problem of motion planning for high-DOF robots under partial observability using guidance from humans.
+We have proposed Bayesian Learning in the Dark (BLIND), an algorithm that leverages the human senses to compute high-DOF robot trajectories that are safe despite partial observability of the environment.
+The main components that made up BLIND are shown next&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-blind-algorithm&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/blind/BLIND-pipeline_hua1dacfa157fa222ffe93d595be1c08bf_1409506_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;BLIND algorithm&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/blind/BLIND-pipeline_hua1dacfa157fa222ffe93d595be1c08bf_1409506_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;5609&#34; height=&#34;2757&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    BLIND algorithm
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;The construction of a low-dimensional discrete state space and the guided motion planner are the two main novelties within BLIND.
+The former leverages projections and sampling-based motion planners to create a space where reward learning can be performed. The latter uses optimization-based motion planning to incorporate the knowledge learned from the human as motion constraints.&lt;br&gt;
+These two together enable reward learning techniques to be used using critiques to learn and compute high-dimensional safe trajectories despite the incomplete environmental information.&lt;/p&gt;
+&lt;p&gt;The results show that BLIND outperforms state-of-the-art methods in teaching effort, success rate and path length.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-results-of-simulated-experiments-in-the-box-and-stove-environments&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/blind/results_hu4705a3750929e7e6469c92fb5173704f_331451_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Results of simulated experiments in the Box and Stove environments&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/blind/results_hu4705a3750929e7e6469c92fb5173704f_331451_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1419&#34; height=&#34;674&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Results of simulated experiments in the Box and Stove environments
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Check out our video of a robot implementation of BLIND, where a human user is asked to critique trajectories that are potentially unsafe. BLIND is executed in real-time and it converges to a safe solution.&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/RbDDiApQhNo&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
+    
+  </channel>
+</rss>
