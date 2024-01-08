@@ -936,7 +936,7 @@ The shown trajectory was computed by our proposed method Robust Optimization-bas
     <item>
       <title>Inverse Kinematics Robo Picasso</title>
       <link>https://carlosquinterop.github.io/project/robo-picasso/</link>
-      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 01 Mar 2020 00:00:00 +0000</pubDate>
       <guid>https://carlosquinterop.github.io/project/robo-picasso/</guid>
       <description>&lt;p&gt;This project was a lab assignment in the course &lt;strong&gt;MECH 498: Introduction to Robotics&lt;/strong&gt; that I took during the Spring of 2020 offered by &lt;a href=&#34;https://omalleym.web.rice.edu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Dr. Marcia O&amp;rsquo;Malley&lt;/a&gt;. I thought this project was a lot of fun and so I decided to share the main results here.
 The assignment was about computing the inverse kinematics (IK) problem for a 6-DOF FANUC S-500 robot shown above.&lt;/p&gt;
