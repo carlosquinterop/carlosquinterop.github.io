@@ -5,7 +5,7 @@
     <link>https://carlosquinterop.github.io/tag/motion-planning/</link>
       <atom:link href="https://carlosquinterop.github.io/tag/motion-planning/index.xml" rel="self" type="application/rss+xml" />
     <description>Motion Planning</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 11 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 01 Sep 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://carlosquinterop.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Motion Planning</title>
@@ -13,9 +13,109 @@
     </image>
     
     <item>
-      <title>Optimal Grasps and Placements for Task and Motion Planning in Clutter,</title>
+      <title>Stochastic Implicit Neural Signed Distance Functions for Safe Motion Planning under Sensing Uncertainty</title>
+      <link>https://carlosquinterop.github.io/project/impdist/</link>
+      <pubDate>Fri, 01 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://carlosquinterop.github.io/project/impdist/</guid>
+      <description>&lt;p&gt;There exists a plethora of highly efficient methods for motion planning when the environment representation is perfectly known. Typical representations include meshes and geometric primitives that resemble objects in the environment. However, when the information about the environment comes direclty from sensors the situtation changes. It is still not clear how to incorporate this information into existing motion planning algorithms in a safe and reliable way. A common approach consists of computing intermediate representations such as planes, meshes and occupancy information using sensor data. However, this naive integration may fail in guaranteeing that the computed robot motions are safe when executed by the robot. This is especially true for high-DoF manipulators where simplifying assumptions do not hold.&lt;/p&gt;
+&lt;p&gt;We propose a stochastic implicit neural signed distance representation that 1) models sensor uncertainty directly and therefores does not require exact knowledge of the environment geometry and 2) that can provide important no-collision information in the robot configuration space that we use to formulate a hierarchical chance-constrained motion planner to generate minimal risk motions that are guaranteed to respect a maximum bound on a given probability of collision and are efficiently solved using off-the-shelf solvers.&lt;/p&gt;
+&lt;h2 id=&#34;sensing-uncertainty-quantification&#34;&gt;Sensing uncertainty quantification&lt;/h2&gt;
+&lt;p&gt;The figure below shows a diagram of our neural representation to quantify the uncertainy coming from the sensor. Inspired by recent trends on implicit representations we pose the problem as variational inference by learning a probability distribution over signed distances for each robot link conditioned on a point in space. This is paramount since it provides 1) uncertainty estimates of distances that can be incorporated into a safe motion planner and 2) directions in the robot&amp;rsquo;s configuration space to avoid collisions from noisy points. We use this information to formulate a safe motion planner based on optimization that can be efficiently solved.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-our-stochastic-implicit-neural-signed-distance-functions-use-a-a-robot-configuration-q-and-b-one-noisy-point-x-as-input-c--inputs-go-through-a-positional-encoding-layer-and-then-through-4-fully-connected-layers-of-size-256-finally-two-separate-layers-of-size-k-output-the-mean-and-standard-deviation-parameters-of-d-each-links-distribution-modeling-the-noisy-signed-distance-conditioned-on-q-x&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/impdist/method_hu86b55cc49b117d5d296744d85d4a6813_558131_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Our stochastic implicit neural signed distance functions use a) a robot configuration q and b) one noisy point x as input. c ) Inputs go through a positional encoding layer and then through 4 fully connected layers of size 256. Finally, two separate layers of size K output the mean and standard deviation parameters of d) each link&amp;amp;rsquo;s distribution modeling the noisy signed distance conditioned on q, x.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/impdist/method_hu86b55cc49b117d5d296744d85d4a6813_558131_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1039&#34; height=&#34;866&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Our stochastic implicit neural signed distance functions use a) a robot configuration q and b) one noisy point x as input. c ) Inputs go through a positional encoding layer and then through 4 fully connected layers of size 256. Finally, two separate layers of size K output the mean and standard deviation parameters of d) each link&amp;rsquo;s distribution modeling the noisy signed distance conditioned on q, x.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;chance-constrained-hierarchical-planning&#34;&gt;Chance-constrained hierarchical planning&lt;/h2&gt;
+&lt;p&gt;We propose a hierarchical planner that first uses the noisy information from the sensor to compute a &lt;em&gt;candidate path&lt;/em&gt; that is later processed by a sequence of chance-constrained inverse kinematic optimization-based solvers using the uncertainty information from the neural representation. We propose a novel reformulation of the joint chance constraint that represents the no-collision information between the robot and the environment and show that it can be solved efficiently and to global optimality by off-the-shelf solvers for realistic motion planning problems.&lt;/p&gt;
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;We ran experiments on 50 different instances of problems from &lt;a href=&#34;https://www.kavrakilab.org/publications/chamzas2022-motion-bench-maker.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MOTIONBENCHMAKER&lt;/a&gt; where the environment was represented by small spheres that covered the actual geometry. Each problem has different start/goal configurations coming from variations in the grasped object and the robot&amp;rsquo;s relative pose with respect to the table. Obstacles in the table are also randomly sampled. We compared our method with a baseline where each sphere radius is increased by certain percentage. To assess the performance of the methods we estimated the true probability of collision by running a Monte Carlo simulation with 20.000 samples for each computed path. The candidate paths were computed using RRT-Connect. The results are shown below.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-estimated-cdf-of-the-risk-attained-by-each-method-on-all-50-problems&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/impdist/risk_huc6515979079771b305d95b97c5a63078_71755_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Estimated CDF of the risk attained by each method on all 50 problems.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/impdist/risk_huc6515979079771b305d95b97c5a63078_71755_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;864&#34; height=&#34;720&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Estimated CDF of the risk attained by each method on all 50 problems.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Optimal Grasps and Placements for Task and Motion Planning in Clutter</title>
       <link>https://carlosquinterop.github.io/project/tamp-clutter/</link>
-      <pubDate>Wed, 11 Jan 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
       <guid>https://carlosquinterop.github.io/project/tamp-clutter/</guid>
       <description>&lt;p&gt;Planning for sequential manipulation in robotics is paramount. This is typically achieved by a layered planning approach (called Task and Motion Planning - TAMP) where a &lt;em&gt;skeleton&lt;/em&gt; is computed by a task planner first and then the robot motions for the actions within this skeleton are computed by a motion planner. Before the motions can be computed, continuous values of the action parameters need to be first resolved (this is called &lt;em&gt;&lt;strong&gt;grounding&lt;/strong&gt;&lt;/em&gt;). For example, to compute the motion to pick up an object, the grasp pose (i.e. the relative pose of the robot&amp;rsquo;s end-effector with respect to the object) needs to be computed first. To place an object in a surface, the new object location is required. Most TAMP frameworks rely on specialized samplers to obtain these parameters and they do not consider complex geometric constraints that can arise in the presence of cluttered environments. We contribute a specialized grounder for placements and grasps that considers all the actions of a plan skeleton &lt;em&gt;jointly&lt;/em&gt; for problems of planar manipulation under heavy cluttered scenes.&lt;/p&gt;
 
@@ -126,9 +226,159 @@
     </item>
     
     <item>
+      <title>MotionBenchMaker A Tool to Generate and Benchmark Motion Planning Datasets</title>
+      <link>https://carlosquinterop.github.io/project/motionbenchmaker/</link>
+      <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://carlosquinterop.github.io/project/motionbenchmaker/</guid>
+      <description>&lt;p&gt;Evaluating motion planning algorithms for high degree-of-freedom robots (i.e., manipulators) can be challenging and time consuming, prone to bias and hard to compare against state-of-the-art planners. Additionally, with the advent of learning methods in planning for robotics, it is paramount to have the ability to generate datasets of meaningful problems to train and evaluate new models. In this paper we introduce &lt;a href=&#34;https://github.com/KavrakiLab/motion_bench_maker&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MotionBenchMaker&lt;/a&gt;, an open source tool to generate datasets for bechmarking and training for realistic robot manipulation problems. Our tool is designed to be easy to extend to support new problems and robots and comes with tools to easily perform motion planning benchmarking.&lt;/p&gt;
+&lt;h2 id=&#34;features-of-motionbenchmaker&#34;&gt;Features of MotionBenchMaker&lt;/h2&gt;
+&lt;p&gt;These are some of the features that MotionBenchMaker offers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It is written on C++&lt;/li&gt;
+&lt;li&gt;It supports ROS and MoveIt making it easy to integrate into existing robotics implementations&lt;/li&gt;
+&lt;li&gt;Configuration of new environments and robots is done through standard formats such as yaml, urdf, srd files.&lt;/li&gt;
+&lt;li&gt;It comes with sampling-based planners from OMPL such as RRT-Connect, PRM, KPIECE, etc.&lt;/li&gt;
+&lt;li&gt;It provides tools to easily specify environment transformations to automatically generate interesting motion planning problems, such as problem generator and scene sampler.&lt;/li&gt;
+&lt;li&gt;It comes with prefrabicated datasets that comprise 5 commonly used robots and 8 environments that are actively being used by the community to assess the performance of new motion planning algorithms.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;scene-sampler-and-problem-generator&#34;&gt;Scene Sampler and Problem Generator&lt;/h2&gt;
+&lt;p&gt;The main functionality of MotionBenchMaker is its ability to create new problems by 1) easily specifying (random) transformations to objects from a nominal scene to generate distinct problems from a similar domain and 2) automating the way to specify motion planning problems (start/goal configurations) for manipulation problems by describing relationships between robot end-effectors and objects in the scene. The first component is achieved by a scene sampler which can perform SE(3) sampling to objects in the scene as well as URDF sampling as shown in the figure below:&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-given-a-nominal-scene-left-the-scene-sampler-generates-variations-by-performing-right-se3-sampling-as-well-as-urdf-sampling-of-kinematic-structures-of-a-scene-such-as-the-doors-of-a-cabinet-sampling-parameters-are-specified-using-descriptor-files&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/motionbenchmaker/scene_sampler_hu547cf1808f058d90142a826a8e70489b_212520_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Given a nominal scene (left), the scene sampler generates variations by performing (right) SE(3) sampling as well as URDF sampling of kinematic structures of a scene (such as the doors of a cabinet). Sampling parameters are specified using descriptor files.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/motionbenchmaker/scene_sampler_hu547cf1808f058d90142a826a8e70489b_212520_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1606&#34; height=&#34;641&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Given a nominal scene (left), the scene sampler generates variations by performing (right) SE(3) sampling as well as URDF sampling of kinematic structures of a scene (such as the doors of a cabinet). Sampling parameters are specified using descriptor files.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;The Problem Generator takes as inputs a robot description (URDF), a geometric scene and object-centric end-effector poses and create a motion planning problem (start and goal configurations in the form of a MoveIt! request). Additional transformations to specify the robot base pose can be specified. The figure below shows examples.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-given-the-information-on-the-left-the-problem-generator-performs-inverse-kinematics-and-all-the-appropriate-transformations-to-compute-a-fully-defined-motion-planning-problem-ie-start-and-goal-configurations-providing-an-abstract-interface-that-is-robot-agnostic-and-ready-to-use&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/motionbenchmaker/problem_generator_hub23746d10a60025f76d773c2fa8c1fb6_1171185_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Given the information on the left, the problem generator performs inverse kinematics and all the appropriate transformations to compute a fully defined motion planning problem, i.e., start and goal configurations, providing an abstract interface that is robot-agnostic and ready to use.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/motionbenchmaker/problem_generator_hub23746d10a60025f76d773c2fa8c1fb6_1171185_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;4961&#34; height=&#34;2464&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Given the information on the left, the problem generator performs inverse kinematics and all the appropriate transformations to compute a fully defined motion planning problem, i.e., start and goal configurations, providing an abstract interface that is robot-agnostic and ready to use.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;prefabricated-dataset&#34;&gt;Prefabricated dataset&lt;/h2&gt;
+&lt;p&gt;MotionBenchMaker comes with a set of prefabricated problems that are interesting motion planning queries with commonly used robots.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-prefabricated-problems-that-come-with-motionbenchmaker&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/motionbenchmaker/problems_hu5189cf451efaf803d102155738f3f4a3_13563860_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Prefabricated problems that come with MotionBenchMaker&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/motionbenchmaker/problems_hu5189cf451efaf803d102155738f3f4a3_13563860_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;13262&#34; height=&#34;7197&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Prefabricated problems that come with MotionBenchMaker
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+</description>
+    </item>
+    
+    <item>
       <title>Human-Guided Motion Planning in Partially Observable Environments</title>
       <link>https://carlosquinterop.github.io/project/blind/</link>
-      <pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 01 Sep 2021 00:00:00 +0000</pubDate>
       <guid>https://carlosquinterop.github.io/project/blind/</guid>
       <description>&lt;p&gt;This project is concerned with the problem of motion planning for high-DOF robots under partial observability using guidance from humans.
 We have proposed Bayesian Learning in the Dark (BLIND), an algorithm that leverages the human senses to compute high-DOF robot trajectories that are safe despite partial observability of the environment.
@@ -233,7 +483,7 @@ These two together enable reward learning techniques to be used using critiques 
     <item>
       <title>Motion Planning with incomplete scene information</title>
       <link>https://carlosquinterop.github.io/project/incomplete-sensing/</link>
-      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       <guid>https://carlosquinterop.github.io/project/incomplete-sensing/</guid>
       <description>&lt;p&gt;The objective of the project is to simulate the Fetch robot in a realistic environment considering uncertainty. In order to accomplish this we needed to take into account the complexity of a real robotic platform, starting with the topics covered during the course, i.e., kinematics, dynamics, control, but also others that were either briefly discussed or not at all, such as sensing, localization, motion planning, etc. Instead of building or analyzing all of these from scratch for the Fetch robot, we used a large software stack based on ROS (Robot Operating System). In the project, all of these were integrated in order to solve the problem of successfully planning and executing a grasping task in the presence of uncertain obstacles. The following are the main software components of the solution and a brief description of what was done in this project with each one:&lt;/p&gt;
 &lt;ul&gt;
@@ -489,7 +739,7 @@ These two together enable reward learning techniques to be used using critiques 
     <item>
       <title>Robust Motion Planning under Sensing Uncertainty</title>
       <link>https://carlosquinterop.github.io/project/sensing_uncertainty/</link>
-      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       <guid>https://carlosquinterop.github.io/project/sensing_uncertainty/</guid>
       <description>&lt;p&gt;Motion planning for high degree-of-freedom ( DOF ) robots is challenging, especially when acting in complex environments under sensing uncertainty. While there is significant work on how to plan under state uncertainty for low- DOF robots, existing methods cannot be easily translated into the high-DOF case, due to the complex geometry of the robot’s body and its environment.&lt;/p&gt;
 &lt;p&gt;The figure above shows an example of a Fetch robot performing manipulation tasks in a table environment. The objects on top of the table are subject to sensing uncertainty in the direction shown by the arrow. The objective is to find a plan to move the green can from its starting position (to the left of the robot) to its goal position, while taking into account the object&amp;rsquo;s uncertainty.

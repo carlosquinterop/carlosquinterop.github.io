@@ -5,7 +5,7 @@
     <link>https://carlosquinterop.github.io/tag/neural-networks/</link>
       <atom:link href="https://carlosquinterop.github.io/tag/neural-networks/index.xml" rel="self" type="application/rss+xml" />
     <description>Neural Networks</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sun, 01 Dec 2019 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://carlosquinterop.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Neural Networks</title>
@@ -15,7 +15,7 @@
     <item>
       <title>Neural Network Pruning - A review</title>
       <link>https://carlosquinterop.github.io/project/pruning/</link>
-      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
       <guid>https://carlosquinterop.github.io/project/pruning/</guid>
       <description>&lt;p&gt;Machine learning - and especially deep learning - is a big trend these days; not only in research, but in many other domains. Large companies, start-ups, governments and many other actors have realized the importance on the use of massive available data to leverage their businesses and achieve more complex tasks than before. During the last decade, the size of machine learning models and the amount of data that they can efficiently process have significantly increased, in part due to the highly notable improvement of hardware technology especially tailored to meet the need of these models. Distributed computing has been an important resource to build large machine learning models. However, it is still not clear how to efficiently split the parameters of giant networks across distributed computing resources to achieve efficient training results. The nature of the gradient descent algorithm, that requires dense and sequential updates, leads to communication bottlenecks or accuracy degradation. Ideally, we would have asynchronous updates without hurting performance.&lt;/p&gt;
 &lt;p&gt;Other type of important applications for large machine learning models is in the mobile phones and low-resource devices. In these cases it is extremely important that training and inference costs (i.e., the costs of using the model to predict new values) are energy-efficient, since these may be implemented by the user in their own devices and long lasting battery life is a key requirement. Graphic Processing Units (GPU) are capable of achieving large amounts of computational operations, including matrix multiplication which is a key operation in training/inference processes of a Deep Neural Network (DNN). However, they are not, in general, energy-efficient. Only expecting that hardware designers reduce the energy cost of these operations at the hardware level is not possible since these enhancements may be slow, are mostly driven by commercial demands and may be highly expensive and risky.&lt;/p&gt;

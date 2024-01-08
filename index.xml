@@ -5,7 +5,7 @@
     <link>https://carlosquinterop.github.io/</link>
       <atom:link href="https://carlosquinterop.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Carlos Quintero-Peña</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 11 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 01 Sep 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://carlosquinterop.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
       <title>Carlos Quintero-Peña</title>
@@ -13,9 +13,109 @@
     </image>
     
     <item>
-      <title>Optimal Grasps and Placements for Task and Motion Planning in Clutter,</title>
+      <title>Stochastic Implicit Neural Signed Distance Functions for Safe Motion Planning under Sensing Uncertainty</title>
+      <link>https://carlosquinterop.github.io/project/impdist/</link>
+      <pubDate>Fri, 01 Sep 2023 00:00:00 +0000</pubDate>
+      <guid>https://carlosquinterop.github.io/project/impdist/</guid>
+      <description>&lt;p&gt;There exists a plethora of highly efficient methods for motion planning when the environment representation is perfectly known. Typical representations include meshes and geometric primitives that resemble objects in the environment. However, when the information about the environment comes direclty from sensors the situtation changes. It is still not clear how to incorporate this information into existing motion planning algorithms in a safe and reliable way. A common approach consists of computing intermediate representations such as planes, meshes and occupancy information using sensor data. However, this naive integration may fail in guaranteeing that the computed robot motions are safe when executed by the robot. This is especially true for high-DoF manipulators where simplifying assumptions do not hold.&lt;/p&gt;
+&lt;p&gt;We propose a stochastic implicit neural signed distance representation that 1) models sensor uncertainty directly and therefores does not require exact knowledge of the environment geometry and 2) that can provide important no-collision information in the robot configuration space that we use to formulate a hierarchical chance-constrained motion planner to generate minimal risk motions that are guaranteed to respect a maximum bound on a given probability of collision and are efficiently solved using off-the-shelf solvers.&lt;/p&gt;
+&lt;h2 id=&#34;sensing-uncertainty-quantification&#34;&gt;Sensing uncertainty quantification&lt;/h2&gt;
+&lt;p&gt;The figure below shows a diagram of our neural representation to quantify the uncertainy coming from the sensor. Inspired by recent trends on implicit representations we pose the problem as variational inference by learning a probability distribution over signed distances for each robot link conditioned on a point in space. This is paramount since it provides 1) uncertainty estimates of distances that can be incorporated into a safe motion planner and 2) directions in the robot&amp;rsquo;s configuration space to avoid collisions from noisy points. We use this information to formulate a safe motion planner based on optimization that can be efficiently solved.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-our-stochastic-implicit-neural-signed-distance-functions-use-a-a-robot-configuration-q-and-b-one-noisy-point-x-as-input-c--inputs-go-through-a-positional-encoding-layer-and-then-through-4-fully-connected-layers-of-size-256-finally-two-separate-layers-of-size-k-output-the-mean-and-standard-deviation-parameters-of-d-each-links-distribution-modeling-the-noisy-signed-distance-conditioned-on-q-x&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/impdist/method_hu86b55cc49b117d5d296744d85d4a6813_558131_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Our stochastic implicit neural signed distance functions use a) a robot configuration q and b) one noisy point x as input. c ) Inputs go through a positional encoding layer and then through 4 fully connected layers of size 256. Finally, two separate layers of size K output the mean and standard deviation parameters of d) each link&amp;amp;rsquo;s distribution modeling the noisy signed distance conditioned on q, x.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/impdist/method_hu86b55cc49b117d5d296744d85d4a6813_558131_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1039&#34; height=&#34;866&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Our stochastic implicit neural signed distance functions use a) a robot configuration q and b) one noisy point x as input. c ) Inputs go through a positional encoding layer and then through 4 fully connected layers of size 256. Finally, two separate layers of size K output the mean and standard deviation parameters of d) each link&amp;rsquo;s distribution modeling the noisy signed distance conditioned on q, x.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;chance-constrained-hierarchical-planning&#34;&gt;Chance-constrained hierarchical planning&lt;/h2&gt;
+&lt;p&gt;We propose a hierarchical planner that first uses the noisy information from the sensor to compute a &lt;em&gt;candidate path&lt;/em&gt; that is later processed by a sequence of chance-constrained inverse kinematic optimization-based solvers using the uncertainty information from the neural representation. We propose a novel reformulation of the joint chance constraint that represents the no-collision information between the robot and the environment and show that it can be solved efficiently and to global optimality by off-the-shelf solvers for realistic motion planning problems.&lt;/p&gt;
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;We ran experiments on 50 different instances of problems from &lt;a href=&#34;https://www.kavrakilab.org/publications/chamzas2022-motion-bench-maker.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MOTIONBENCHMAKER&lt;/a&gt; where the environment was represented by small spheres that covered the actual geometry. Each problem has different start/goal configurations coming from variations in the grasped object and the robot&amp;rsquo;s relative pose with respect to the table. Obstacles in the table are also randomly sampled. We compared our method with a baseline where each sphere radius is increased by certain percentage. To assess the performance of the methods we estimated the true probability of collision by running a Monte Carlo simulation with 20.000 samples for each computed path. The candidate paths were computed using RRT-Connect. The results are shown below.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-estimated-cdf-of-the-risk-attained-by-each-method-on-all-50-problems&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/impdist/risk_huc6515979079771b305d95b97c5a63078_71755_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Estimated CDF of the risk attained by each method on all 50 problems.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/impdist/risk_huc6515979079771b305d95b97c5a63078_71755_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;864&#34; height=&#34;720&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Estimated CDF of the risk attained by each method on all 50 problems.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Optimal Grasps and Placements for Task and Motion Planning in Clutter</title>
       <link>https://carlosquinterop.github.io/project/tamp-clutter/</link>
-      <pubDate>Wed, 11 Jan 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
       <guid>https://carlosquinterop.github.io/project/tamp-clutter/</guid>
       <description>&lt;p&gt;Planning for sequential manipulation in robotics is paramount. This is typically achieved by a layered planning approach (called Task and Motion Planning - TAMP) where a &lt;em&gt;skeleton&lt;/em&gt; is computed by a task planner first and then the robot motions for the actions within this skeleton are computed by a motion planner. Before the motions can be computed, continuous values of the action parameters need to be first resolved (this is called &lt;em&gt;&lt;strong&gt;grounding&lt;/strong&gt;&lt;/em&gt;). For example, to compute the motion to pick up an object, the grasp pose (i.e. the relative pose of the robot&amp;rsquo;s end-effector with respect to the object) needs to be computed first. To place an object in a surface, the new object location is required. Most TAMP frameworks rely on specialized samplers to obtain these parameters and they do not consider complex geometric constraints that can arise in the presence of cluttered environments. We contribute a specialized grounder for placements and grasps that considers all the actions of a plan skeleton &lt;em&gt;jointly&lt;/em&gt; for problems of planar manipulation under heavy cluttered scenes.&lt;/p&gt;
 
@@ -126,9 +226,159 @@
     </item>
     
     <item>
+      <title>MotionBenchMaker A Tool to Generate and Benchmark Motion Planning Datasets</title>
+      <link>https://carlosquinterop.github.io/project/motionbenchmaker/</link>
+      <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://carlosquinterop.github.io/project/motionbenchmaker/</guid>
+      <description>&lt;p&gt;Evaluating motion planning algorithms for high degree-of-freedom robots (i.e., manipulators) can be challenging and time consuming, prone to bias and hard to compare against state-of-the-art planners. Additionally, with the advent of learning methods in planning for robotics, it is paramount to have the ability to generate datasets of meaningful problems to train and evaluate new models. In this paper we introduce &lt;a href=&#34;https://github.com/KavrakiLab/motion_bench_maker&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;MotionBenchMaker&lt;/a&gt;, an open source tool to generate datasets for bechmarking and training for realistic robot manipulation problems. Our tool is designed to be easy to extend to support new problems and robots and comes with tools to easily perform motion planning benchmarking.&lt;/p&gt;
+&lt;h2 id=&#34;features-of-motionbenchmaker&#34;&gt;Features of MotionBenchMaker&lt;/h2&gt;
+&lt;p&gt;These are some of the features that MotionBenchMaker offers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It is written on C++&lt;/li&gt;
+&lt;li&gt;It supports ROS and MoveIt making it easy to integrate into existing robotics implementations&lt;/li&gt;
+&lt;li&gt;Configuration of new environments and robots is done through standard formats such as yaml, urdf, srd files.&lt;/li&gt;
+&lt;li&gt;It comes with sampling-based planners from OMPL such as RRT-Connect, PRM, KPIECE, etc.&lt;/li&gt;
+&lt;li&gt;It provides tools to easily specify environment transformations to automatically generate interesting motion planning problems, such as problem generator and scene sampler.&lt;/li&gt;
+&lt;li&gt;It comes with prefrabicated datasets that comprise 5 commonly used robots and 8 environments that are actively being used by the community to assess the performance of new motion planning algorithms.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;scene-sampler-and-problem-generator&#34;&gt;Scene Sampler and Problem Generator&lt;/h2&gt;
+&lt;p&gt;The main functionality of MotionBenchMaker is its ability to create new problems by 1) easily specifying (random) transformations to objects from a nominal scene to generate distinct problems from a similar domain and 2) automating the way to specify motion planning problems (start/goal configurations) for manipulation problems by describing relationships between robot end-effectors and objects in the scene. The first component is achieved by a scene sampler which can perform SE(3) sampling to objects in the scene as well as URDF sampling as shown in the figure below:&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-given-a-nominal-scene-left-the-scene-sampler-generates-variations-by-performing-right-se3-sampling-as-well-as-urdf-sampling-of-kinematic-structures-of-a-scene-such-as-the-doors-of-a-cabinet-sampling-parameters-are-specified-using-descriptor-files&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/motionbenchmaker/scene_sampler_hu547cf1808f058d90142a826a8e70489b_212520_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Given a nominal scene (left), the scene sampler generates variations by performing (right) SE(3) sampling as well as URDF sampling of kinematic structures of a scene (such as the doors of a cabinet). Sampling parameters are specified using descriptor files.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/motionbenchmaker/scene_sampler_hu547cf1808f058d90142a826a8e70489b_212520_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;1606&#34; height=&#34;641&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Given a nominal scene (left), the scene sampler generates variations by performing (right) SE(3) sampling as well as URDF sampling of kinematic structures of a scene (such as the doors of a cabinet). Sampling parameters are specified using descriptor files.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;The Problem Generator takes as inputs a robot description (URDF), a geometric scene and object-centric end-effector poses and create a motion planning problem (start and goal configurations in the form of a MoveIt! request). Additional transformations to specify the robot base pose can be specified. The figure below shows examples.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-given-the-information-on-the-left-the-problem-generator-performs-inverse-kinematics-and-all-the-appropriate-transformations-to-compute-a-fully-defined-motion-planning-problem-ie-start-and-goal-configurations-providing-an-abstract-interface-that-is-robot-agnostic-and-ready-to-use&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/motionbenchmaker/problem_generator_hub23746d10a60025f76d773c2fa8c1fb6_1171185_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Given the information on the left, the problem generator performs inverse kinematics and all the appropriate transformations to compute a fully defined motion planning problem, i.e., start and goal configurations, providing an abstract interface that is robot-agnostic and ready to use.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/motionbenchmaker/problem_generator_hub23746d10a60025f76d773c2fa8c1fb6_1171185_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;4961&#34; height=&#34;2464&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Given the information on the left, the problem generator performs inverse kinematics and all the appropriate transformations to compute a fully defined motion planning problem, i.e., start and goal configurations, providing an abstract interface that is robot-agnostic and ready to use.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;prefabricated-dataset&#34;&gt;Prefabricated dataset&lt;/h2&gt;
+&lt;p&gt;MotionBenchMaker comes with a set of prefabricated problems that are interesting motion planning queries with commonly used robots.&lt;/p&gt;
+
+
+
+
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-prefabricated-problems-that-come-with-motionbenchmaker&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://carlosquinterop.github.io/project/motionbenchmaker/problems_hu5189cf451efaf803d102155738f3f4a3_13563860_2000x2000_fit_lanczos_3.png&#34; data-caption=&#34;Prefabricated problems that come with MotionBenchMaker&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://carlosquinterop.github.io/project/motionbenchmaker/problems_hu5189cf451efaf803d102155738f3f4a3_13563860_2000x2000_fit_lanczos_3.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;13262&#34; height=&#34;7197&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption&gt;
+    Prefabricated problems that come with MotionBenchMaker
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+</description>
+    </item>
+    
+    <item>
       <title>Human-Guided Motion Planning in Partially Observable Environments</title>
       <link>https://carlosquinterop.github.io/project/blind/</link>
-      <pubDate>Tue, 11 Jan 2022 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 01 Sep 2021 00:00:00 +0000</pubDate>
       <guid>https://carlosquinterop.github.io/project/blind/</guid>
       <description>&lt;p&gt;This project is concerned with the problem of motion planning for high-DOF robots under partial observability using guidance from humans.
 We have proposed Bayesian Learning in the Dark (BLIND), an algorithm that leverages the human senses to compute high-DOF robot trajectories that are safe despite partial observability of the environment.
@@ -231,37 +481,9 @@ These two together enable reward learning techniques to be used using critiques 
     </item>
     
     <item>
-      <title>Can Theoretical Algorithms Efficiently Escape Saddle Points in Deep Learning?</title>
-      <link>https://carlosquinterop.github.io/project/example/</link>
-      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://carlosquinterop.github.io/project/example/</guid>
-      <description>&lt;p&gt;This project provides a literature review for the most important recent works related to optimizing high-dimensional non-convex functions in the presence of saddle points mostly for machine learning applications.&lt;/p&gt;
-&lt;p&gt;The inspiration came from reviewing the paper &amp;ldquo;How to Escape Saddle Points Efficiently?&amp;rdquo;. A large research effort has been devoted to proposed methods that can converge to second order stationary points efficiently. Of special interest is the set of methods that do not rely on Hessian computation, mainly driven by applications in machine learning where this may not be feasible. Although, many important theoretical results have been proposed, many of them have not be tested in real experiments, especially in the context of training a deep neural network. We have designed experiments with different network architectures and state-of-the-art datasets to observe the behavior of perturbed versions of gradient descent. Initial results show that an improvement in experimental convergence rate can be seen only for small and shallow networks.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Inverse Kinematics Robo Picasso</title>
-      <link>https://carlosquinterop.github.io/project/robo-picasso/</link>
-      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://carlosquinterop.github.io/project/robo-picasso/</guid>
-      <description>&lt;p&gt;This project was a lab assignment in the course &lt;strong&gt;MECH 498: Introduction to Robotics&lt;/strong&gt; that I took during the Spring of 2020 offered by &lt;a href=&#34;https://omalleym.web.rice.edu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Dr. Marcia O&amp;rsquo;Malley&lt;/a&gt;. I thought this project was a lot of fun and so I decided to share the main results here.
-The assignment was about computing the inverse kinematics (IK) problem for a 6-DOF FANUC S-500 robot shown above.&lt;/p&gt;
-&lt;p&gt;The project was coded using MATLAB where we were given a model of the FANUC robot and were asked to implement both its forward kinematics and inverse kinematics.
-The robot is provided with a drawing tool attached to its end-effector with 4 different brushes and the objective is to give the robot a 3D discretized path that contains the points that make the drawing (a Mickey Mouse face in our case!), so that the robot can draw it. By solving an IK problem for each point in the trajectory and plot them all we can see how the robot model draws the given trajectory. Notice that there are additional challenges to avoid the robot to change between &amp;rsquo;elbow up&amp;rsquo; and &amp;rsquo;elbow down&amp;rsquo; configurations in consecutive points of the trajectory.&lt;/p&gt;
-&lt;p&gt;To make it slightly more interesting we decided to make the robot plot in two different planes for the same drawing, similar to paintings that are drawn in the corner of a room. Checkout the video to see our robot painting the Mickey Mouse face between two walls and notice how the orientation of the tool is changed when the second half of the face is being painted.&lt;/p&gt;
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/ibtgLo-S1uE&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-</description>
-    </item>
-    
-    <item>
       <title>Motion Planning with incomplete scene information</title>
       <link>https://carlosquinterop.github.io/project/incomplete-sensing/</link>
-      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       <guid>https://carlosquinterop.github.io/project/incomplete-sensing/</guid>
       <description>&lt;p&gt;The objective of the project is to simulate the Fetch robot in a realistic environment considering uncertainty. In order to accomplish this we needed to take into account the complexity of a real robotic platform, starting with the topics covered during the course, i.e., kinematics, dynamics, control, but also others that were either briefly discussed or not at all, such as sensing, localization, motion planning, etc. Instead of building or analyzing all of these from scratch for the Fetch robot, we used a large software stack based on ROS (Robot Operating System). In the project, all of these were integrated in order to solve the problem of successfully planning and executing a grasping task in the presence of uncertain obstacles. The following are the main software components of the solution and a brief description of what was done in this project with each one:&lt;/p&gt;
 &lt;ul&gt;
@@ -515,30 +737,9 @@ The robot is provided with a drawing tool attached to its end-effector with 4 di
     </item>
     
     <item>
-      <title>Neural Network Pruning - A review</title>
-      <link>https://carlosquinterop.github.io/project/pruning/</link>
-      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://carlosquinterop.github.io/project/pruning/</guid>
-      <description>&lt;p&gt;Machine learning - and especially deep learning - is a big trend these days; not only in research, but in many other domains. Large companies, start-ups, governments and many other actors have realized the importance on the use of massive available data to leverage their businesses and achieve more complex tasks than before. During the last decade, the size of machine learning models and the amount of data that they can efficiently process have significantly increased, in part due to the highly notable improvement of hardware technology especially tailored to meet the need of these models. Distributed computing has been an important resource to build large machine learning models. However, it is still not clear how to efficiently split the parameters of giant networks across distributed computing resources to achieve efficient training results. The nature of the gradient descent algorithm, that requires dense and sequential updates, leads to communication bottlenecks or accuracy degradation. Ideally, we would have asynchronous updates without hurting performance.&lt;/p&gt;
-&lt;p&gt;Other type of important applications for large machine learning models is in the mobile phones and low-resource devices. In these cases it is extremely important that training and inference costs (i.e., the costs of using the model to predict new values) are energy-efficient, since these may be implemented by the user in their own devices and long lasting battery life is a key requirement. Graphic Processing Units (GPU) are capable of achieving large amounts of computational operations, including matrix multiplication which is a key operation in training/inference processes of a Deep Neural Network (DNN). However, they are not, in general, energy-efficient. Only expecting that hardware designers reduce the energy cost of these operations at the hardware level is not possible since these enhancements may be slow, are mostly driven by commercial demands and may be highly expensive and risky.&lt;/p&gt;
-&lt;p&gt;An important common ground for the two scenarios described above is the fact that there are limits for hardware acceleration for machine learning models, either because algorithm characteristics restrict the massive parallelization on large distributed systems with high communication costs or because powerful available hardware are not very energy-efficient when building and evaluating machine learning models. One solution that will be discussed is to mostly rely on algorithmic improvements rather than only hardware acceleration.&lt;/p&gt;
-&lt;p&gt;Other important and related problem is the one of model representation. In general, we know that growing the size of deep learning models and the data used to build such models is beneficial to increase their accuracy. However, there are several issues that arise when trying to increase both. On one hand, the problem discussed above, about specialized distributed hardware, holds in this scenario since it is not possible to fit this amount of data and models into one single machine. Furthermore, all the required synchronism cost and larges amount of computation pose a big challenge. In these cases, conditional computing, where large parts of a network are active or inactive based on the current example, is a big promise.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;One key concept that has allowed the realization of large models with state-of-the art performances under the constraints mentioned before is that of sparsity.&lt;/strong&gt; One can think of sparseness in a deep network at different levels. For instance, one way to control the network complexity is &lt;em&gt;dropout&lt;/em&gt;; a well known regularization technique that randomly turn off certain neurons of the network during training. Other coarser level of sparsification include the use of conditional computation where networks that are controlled by a gated network can be active or not depending on the specific input. This sparseness may bring ways to approach the desired asynchronous parameter updates since it makes the gradient also sparse. We will guide the discussion about sparsity for training deep networks in efficient manners by using the proposed papers. On one hand, the paper &amp;ldquo;&lt;em&gt;Scalable and Sustainable Deep Learning via Randomized Hashing&lt;/em&gt;&amp;rdquo; is a type of adaptive dropout that uses randomized hashing to dramatically reduce the computation of neuron activations. The second paper &amp;ldquo;&lt;em&gt;SLIDE : In Defense of Smart Algorithms over Hardware Acceleration for Large-scale Deep Learning Systems&lt;/em&gt;&amp;rdquo; presents the SLIDE framework which relies on algorithmic and data-structural design to minimize computational overheads. The authors provide a C++ implementation that can outperform the best implementation on tailored hardware by orders of magnitude. Finally, the paper &amp;ldquo;&lt;em&gt;Outrageously Large Neural Networks: The Sparsely-gated Mixture of Experts Layer&lt;/em&gt;&amp;rdquo; written by Geoffrey Hinton and his group at Google shows a model based on conditional computation to increase a model capacity to be able to absorb huge amounts of data. Their models have up to $137$ billion parameters and can significantly improve state-of-the-art results at lower computational cost.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&amp;quot;&lt;em&gt;Scalable and Sustainable Deep Learning via Randomized Hashing&lt;/em&gt;&amp;quot;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The core idea behind this paper attempts to solve the fundamental problem of achieving energy-efficient architectures for deep neural networks as well as asynchronous parameter updates in both training and inference. It does so by dramatically reducing the number of computations in the network by using sparsity. To achieve this, the authors propose to use a special form of adaptive dropout that relies on randomized hashing. In the idea of adaptive dropout, nodes in the network with low activation values are discarded. This has the described effect of controlling the network complexity but it also reduces the amount of computation since at every training/inference iteration, less operations are required. Previous approaches such as vanilla adaptive dropout and Winner-Take-all (WTA) require to choose the set of nodes for which the the activation is higher. To achieve this, these methods need to perform full computation of activations, although in the case of WTA only a certain percentage of activations are kept. An important idea behind these techniques is that of selecting neurons randomly according to some monotonic function of their activation, i.e., neurons are selected with higher probability if their activation is higher. The randomized hashing idea is that given an input $x$, its activation is a monotonic function of the inner product $w_i^{\top}x$ and therefore the problem of selecting a set of nodes with largest activations can be efficiently approximated to that of maximum inner product search using asymmetric locality sensitive hashing (LSH). In LSH the idea is to map similar items into the same bucket with high probability so that their collision probability is higher if they are close according to some similarity measure. All these results finally allow one to very efficiently find a set of neurons per training iteration with high activation by indexing the neurons into hash tables tailored for inner products. Since LSH achieves sub-linear performance in the search problem, there is a great benefit on using this technique instead of having to compute the activations for all neurons (as in vanilla dropout) or computing the active set in $O(n\log n)$ (as in WTA). At the end of the day, hashing is creating a probability distribution that is monotonic over the activations and applying the same core idea as in vanilla adaptive dropout but saving large amounts of computation.&lt;/p&gt;
-&lt;p&gt;This is a very interesting idea since it effectively shows that neurons into a deep neural network specializes and only contribute important information for some specific examples and furthermore it shows that a large amount of this redundant computation can be avoided by cleverly using efficient techniques such as LSH. In addition to this, the specific sparsity that arises by not considering the output of low activation neurons can be taken into account to perform sparse gradient updates. According to our discussion above, this is a highly desirable result since it easily allows one to perform distributed and asynchronous updates.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&amp;quot;&lt;em&gt;SLIDE : In Defense of Smart Algorithms over Hardware Acceleration for Large-scale Deep Learning Systems&lt;/em&gt;&amp;quot;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In this paper the authors implement several implementation improvements over the sparse updates using LSH, such as initialization, the feedforward pass with hash table sampling, the sparse gradient update and others to finally attain a C++ implementation that is orders of magnitude faster than the best GPU implementation for state-of-the-art problems. Actually, the authors show a very good scalability of performance with respect to the number of cores mainly due to the asynchronous gradient updates. These papers express a very strong argument about the importance of clever algorithmic design with respect to hardware acceleration. Note that most of the ideas discussed here are not suitable for GPU implementation, since their performance drastically drops with sparse memory access. The successful of GPU computation is to achieve aligned-memory access to maximize bandwidth, which is generally, several times lower than processing power.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&amp;quot;&lt;em&gt;Outrageously Large Neural Networks: The Sparsely-gated Mixture of Experts Layer&lt;/em&gt;&amp;quot;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;This paper, written by Google, deals with the issue of model representation. The desired objective is to dramatically increase model capacity but not computation to be able to absorb vast quantities of data available today. Note that naively increasing model size (i.e., increasing the number of layers and neurons and therefore the number of parameters) easily results in an equal increase in the amount of computation and memory footprint that may not be possible to train using current state-of-the-art specialized distributed hardware. The authors propose the use of conditional computation and specifically the sparsely-gated mixture of experts layer. Under this model, a mix of expert networks is trained using specialized gating network that selects a sparse combination of the experts for each input example. The final model results in a model with a larger number of parameters when compared to traditional dense models but with sparse computations, since depending on the input example, the gating networks select a handful of experts only to evaluate, saving high amounts of computation. One could argue that the core idea behind this methods is that every input is sparse in the world of concepts and, similar to the ideas discussed before, one can use such sparseness to reduce the amount of computation required to achieve good performance. Also aligned with the previous discussion, the MoE model can easily be parallelized since each expert&amp;rsquo;s learning process can be designed to fit in one machine, greatly reducing the high cost of communication and synchronization. Also, note that this model is similar but different to that of ensembles. Possibly the most important difference is that all data need to be fed into inidividual learners in ensemble methods, while this is not true in the case of MoE. The gating network can compute its output first and based on this computation, only the output of the selected experts is required. Finally and very important is the necessity of balancing the expert utilization to avoid the phenomena that comes out when the same experts are chosen over and over again. At first, the experts are chosen almost randomly, since the gating network is not fully trained, but every time an expert is favored it is chosen more often producing experts with large weights. This balancing is achieved by introducing an additional term to the loss function of the model. The results of this proposal are clear. Using the type of sparsity introduced by the mixture of experts one can create models with amounts of parameters that were not possible before and use these models with even larger amounts of data to improve the performance of difficult learning problems.&lt;/p&gt;
-&lt;p&gt;The topic of sparsity on deep neural networks convincingly shows that inputs are usually sparse in the world of concepts and furthermore that this can be used to dramatically reduce the number of computations required for training/inference either for achieving energy-efficient implementations, as required in many commercial and industrial applications, or to significantly increase model capacity that allows us to solve larger and more difficult problems where huge amounts of data is available. The reason why this sparsity is possible and is a good idea in deep neural networks may shed light on better understanding how the learning process of complex concepts and models works to create more sophisticated learning algorithms.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Robust Motion Planning under Sensing Uncertainty</title>
       <link>https://carlosquinterop.github.io/project/sensing_uncertainty/</link>
-      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       <guid>https://carlosquinterop.github.io/project/sensing_uncertainty/</guid>
       <description>&lt;p&gt;Motion planning for high degree-of-freedom ( DOF ) robots is challenging, especially when acting in complex environments under sensing uncertainty. While there is significant work on how to plan under state uncertainty for low- DOF robots, existing methods cannot be easily translated into the high-DOF case, due to the complex geometry of the robot’s body and its environment.&lt;/p&gt;
 &lt;p&gt;The figure above shows an example of a Fetch robot performing manipulation tasks in a table environment. The objects on top of the table are subject to sensing uncertainty in the direction shown by the arrow. The objective is to find a plan to move the green can from its starting position (to the left of the robot) to its goal position, while taking into account the object&amp;rsquo;s uncertainty.
@@ -729,6 +930,55 @@ The shown trajectory was computed by our proposed method Robust Optimization-bas
   &lt;iframe src=&#34;https://www.youtube.com/embed/IUuDnYvw2Ow&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
+</description>
+    </item>
+    
+    <item>
+      <title>Can Theoretical Algorithms Efficiently Escape Saddle Points in Deep Learning?</title>
+      <link>https://carlosquinterop.github.io/project/example/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://carlosquinterop.github.io/project/example/</guid>
+      <description>&lt;p&gt;This project provides a literature review for the most important recent works related to optimizing high-dimensional non-convex functions in the presence of saddle points mostly for machine learning applications.&lt;/p&gt;
+&lt;p&gt;The inspiration came from reviewing the paper &amp;ldquo;How to Escape Saddle Points Efficiently?&amp;rdquo;. A large research effort has been devoted to proposed methods that can converge to second order stationary points efficiently. Of special interest is the set of methods that do not rely on Hessian computation, mainly driven by applications in machine learning where this may not be feasible. Although, many important theoretical results have been proposed, many of them have not be tested in real experiments, especially in the context of training a deep neural network. We have designed experiments with different network architectures and state-of-the-art datasets to observe the behavior of perturbed versions of gradient descent. Initial results show that an improvement in experimental convergence rate can be seen only for small and shallow networks.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Inverse Kinematics Robo Picasso</title>
+      <link>https://carlosquinterop.github.io/project/robo-picasso/</link>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://carlosquinterop.github.io/project/robo-picasso/</guid>
+      <description>&lt;p&gt;This project was a lab assignment in the course &lt;strong&gt;MECH 498: Introduction to Robotics&lt;/strong&gt; that I took during the Spring of 2020 offered by &lt;a href=&#34;https://omalleym.web.rice.edu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Dr. Marcia O&amp;rsquo;Malley&lt;/a&gt;. I thought this project was a lot of fun and so I decided to share the main results here.
+The assignment was about computing the inverse kinematics (IK) problem for a 6-DOF FANUC S-500 robot shown above.&lt;/p&gt;
+&lt;p&gt;The project was coded using MATLAB where we were given a model of the FANUC robot and were asked to implement both its forward kinematics and inverse kinematics.
+The robot is provided with a drawing tool attached to its end-effector with 4 different brushes and the objective is to give the robot a 3D discretized path that contains the points that make the drawing (a Mickey Mouse face in our case!), so that the robot can draw it. By solving an IK problem for each point in the trajectory and plot them all we can see how the robot model draws the given trajectory. Notice that there are additional challenges to avoid the robot to change between &amp;rsquo;elbow up&amp;rsquo; and &amp;rsquo;elbow down&amp;rsquo; configurations in consecutive points of the trajectory.&lt;/p&gt;
+&lt;p&gt;To make it slightly more interesting we decided to make the robot plot in two different planes for the same drawing, similar to paintings that are drawn in the corner of a room. Checkout the video to see our robot painting the Mickey Mouse face between two walls and notice how the orientation of the tool is changed when the second half of the face is being painted.&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/ibtgLo-S1uE&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Neural Network Pruning - A review</title>
+      <link>https://carlosquinterop.github.io/project/pruning/</link>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://carlosquinterop.github.io/project/pruning/</guid>
+      <description>&lt;p&gt;Machine learning - and especially deep learning - is a big trend these days; not only in research, but in many other domains. Large companies, start-ups, governments and many other actors have realized the importance on the use of massive available data to leverage their businesses and achieve more complex tasks than before. During the last decade, the size of machine learning models and the amount of data that they can efficiently process have significantly increased, in part due to the highly notable improvement of hardware technology especially tailored to meet the need of these models. Distributed computing has been an important resource to build large machine learning models. However, it is still not clear how to efficiently split the parameters of giant networks across distributed computing resources to achieve efficient training results. The nature of the gradient descent algorithm, that requires dense and sequential updates, leads to communication bottlenecks or accuracy degradation. Ideally, we would have asynchronous updates without hurting performance.&lt;/p&gt;
+&lt;p&gt;Other type of important applications for large machine learning models is in the mobile phones and low-resource devices. In these cases it is extremely important that training and inference costs (i.e., the costs of using the model to predict new values) are energy-efficient, since these may be implemented by the user in their own devices and long lasting battery life is a key requirement. Graphic Processing Units (GPU) are capable of achieving large amounts of computational operations, including matrix multiplication which is a key operation in training/inference processes of a Deep Neural Network (DNN). However, they are not, in general, energy-efficient. Only expecting that hardware designers reduce the energy cost of these operations at the hardware level is not possible since these enhancements may be slow, are mostly driven by commercial demands and may be highly expensive and risky.&lt;/p&gt;
+&lt;p&gt;An important common ground for the two scenarios described above is the fact that there are limits for hardware acceleration for machine learning models, either because algorithm characteristics restrict the massive parallelization on large distributed systems with high communication costs or because powerful available hardware are not very energy-efficient when building and evaluating machine learning models. One solution that will be discussed is to mostly rely on algorithmic improvements rather than only hardware acceleration.&lt;/p&gt;
+&lt;p&gt;Other important and related problem is the one of model representation. In general, we know that growing the size of deep learning models and the data used to build such models is beneficial to increase their accuracy. However, there are several issues that arise when trying to increase both. On one hand, the problem discussed above, about specialized distributed hardware, holds in this scenario since it is not possible to fit this amount of data and models into one single machine. Furthermore, all the required synchronism cost and larges amount of computation pose a big challenge. In these cases, conditional computing, where large parts of a network are active or inactive based on the current example, is a big promise.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;One key concept that has allowed the realization of large models with state-of-the art performances under the constraints mentioned before is that of sparsity.&lt;/strong&gt; One can think of sparseness in a deep network at different levels. For instance, one way to control the network complexity is &lt;em&gt;dropout&lt;/em&gt;; a well known regularization technique that randomly turn off certain neurons of the network during training. Other coarser level of sparsification include the use of conditional computation where networks that are controlled by a gated network can be active or not depending on the specific input. This sparseness may bring ways to approach the desired asynchronous parameter updates since it makes the gradient also sparse. We will guide the discussion about sparsity for training deep networks in efficient manners by using the proposed papers. On one hand, the paper &amp;ldquo;&lt;em&gt;Scalable and Sustainable Deep Learning via Randomized Hashing&lt;/em&gt;&amp;rdquo; is a type of adaptive dropout that uses randomized hashing to dramatically reduce the computation of neuron activations. The second paper &amp;ldquo;&lt;em&gt;SLIDE : In Defense of Smart Algorithms over Hardware Acceleration for Large-scale Deep Learning Systems&lt;/em&gt;&amp;rdquo; presents the SLIDE framework which relies on algorithmic and data-structural design to minimize computational overheads. The authors provide a C++ implementation that can outperform the best implementation on tailored hardware by orders of magnitude. Finally, the paper &amp;ldquo;&lt;em&gt;Outrageously Large Neural Networks: The Sparsely-gated Mixture of Experts Layer&lt;/em&gt;&amp;rdquo; written by Geoffrey Hinton and his group at Google shows a model based on conditional computation to increase a model capacity to be able to absorb huge amounts of data. Their models have up to $137$ billion parameters and can significantly improve state-of-the-art results at lower computational cost.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;quot;&lt;em&gt;Scalable and Sustainable Deep Learning via Randomized Hashing&lt;/em&gt;&amp;quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The core idea behind this paper attempts to solve the fundamental problem of achieving energy-efficient architectures for deep neural networks as well as asynchronous parameter updates in both training and inference. It does so by dramatically reducing the number of computations in the network by using sparsity. To achieve this, the authors propose to use a special form of adaptive dropout that relies on randomized hashing. In the idea of adaptive dropout, nodes in the network with low activation values are discarded. This has the described effect of controlling the network complexity but it also reduces the amount of computation since at every training/inference iteration, less operations are required. Previous approaches such as vanilla adaptive dropout and Winner-Take-all (WTA) require to choose the set of nodes for which the the activation is higher. To achieve this, these methods need to perform full computation of activations, although in the case of WTA only a certain percentage of activations are kept. An important idea behind these techniques is that of selecting neurons randomly according to some monotonic function of their activation, i.e., neurons are selected with higher probability if their activation is higher. The randomized hashing idea is that given an input $x$, its activation is a monotonic function of the inner product $w_i^{\top}x$ and therefore the problem of selecting a set of nodes with largest activations can be efficiently approximated to that of maximum inner product search using asymmetric locality sensitive hashing (LSH). In LSH the idea is to map similar items into the same bucket with high probability so that their collision probability is higher if they are close according to some similarity measure. All these results finally allow one to very efficiently find a set of neurons per training iteration with high activation by indexing the neurons into hash tables tailored for inner products. Since LSH achieves sub-linear performance in the search problem, there is a great benefit on using this technique instead of having to compute the activations for all neurons (as in vanilla dropout) or computing the active set in $O(n\log n)$ (as in WTA). At the end of the day, hashing is creating a probability distribution that is monotonic over the activations and applying the same core idea as in vanilla adaptive dropout but saving large amounts of computation.&lt;/p&gt;
+&lt;p&gt;This is a very interesting idea since it effectively shows that neurons into a deep neural network specializes and only contribute important information for some specific examples and furthermore it shows that a large amount of this redundant computation can be avoided by cleverly using efficient techniques such as LSH. In addition to this, the specific sparsity that arises by not considering the output of low activation neurons can be taken into account to perform sparse gradient updates. According to our discussion above, this is a highly desirable result since it easily allows one to perform distributed and asynchronous updates.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;quot;&lt;em&gt;SLIDE : In Defense of Smart Algorithms over Hardware Acceleration for Large-scale Deep Learning Systems&lt;/em&gt;&amp;quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this paper the authors implement several implementation improvements over the sparse updates using LSH, such as initialization, the feedforward pass with hash table sampling, the sparse gradient update and others to finally attain a C++ implementation that is orders of magnitude faster than the best GPU implementation for state-of-the-art problems. Actually, the authors show a very good scalability of performance with respect to the number of cores mainly due to the asynchronous gradient updates. These papers express a very strong argument about the importance of clever algorithmic design with respect to hardware acceleration. Note that most of the ideas discussed here are not suitable for GPU implementation, since their performance drastically drops with sparse memory access. The successful of GPU computation is to achieve aligned-memory access to maximize bandwidth, which is generally, several times lower than processing power.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;quot;&lt;em&gt;Outrageously Large Neural Networks: The Sparsely-gated Mixture of Experts Layer&lt;/em&gt;&amp;quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This paper, written by Google, deals with the issue of model representation. The desired objective is to dramatically increase model capacity but not computation to be able to absorb vast quantities of data available today. Note that naively increasing model size (i.e., increasing the number of layers and neurons and therefore the number of parameters) easily results in an equal increase in the amount of computation and memory footprint that may not be possible to train using current state-of-the-art specialized distributed hardware. The authors propose the use of conditional computation and specifically the sparsely-gated mixture of experts layer. Under this model, a mix of expert networks is trained using specialized gating network that selects a sparse combination of the experts for each input example. The final model results in a model with a larger number of parameters when compared to traditional dense models but with sparse computations, since depending on the input example, the gating networks select a handful of experts only to evaluate, saving high amounts of computation. One could argue that the core idea behind this methods is that every input is sparse in the world of concepts and, similar to the ideas discussed before, one can use such sparseness to reduce the amount of computation required to achieve good performance. Also aligned with the previous discussion, the MoE model can easily be parallelized since each expert&amp;rsquo;s learning process can be designed to fit in one machine, greatly reducing the high cost of communication and synchronization. Also, note that this model is similar but different to that of ensembles. Possibly the most important difference is that all data need to be fed into inidividual learners in ensemble methods, while this is not true in the case of MoE. The gating network can compute its output first and based on this computation, only the output of the selected experts is required. Finally and very important is the necessity of balancing the expert utilization to avoid the phenomena that comes out when the same experts are chosen over and over again. At first, the experts are chosen almost randomly, since the gating network is not fully trained, but every time an expert is favored it is chosen more often producing experts with large weights. This balancing is achieved by introducing an additional term to the loss function of the model. The results of this proposal are clear. Using the type of sparsity introduced by the mixture of experts one can create models with amounts of parameters that were not possible before and use these models with even larger amounts of data to improve the performance of difficult learning problems.&lt;/p&gt;
+&lt;p&gt;The topic of sparsity on deep neural networks convincingly shows that inputs are usually sparse in the world of concepts and furthermore that this can be used to dramatically reduce the number of computations required for training/inference either for achieving energy-efficient implementations, as required in many commercial and industrial applications, or to significantly increase model capacity that allows us to solve larger and more difficult problems where huge amounts of data is available. The reason why this sparsity is possible and is a good idea in deep neural networks may shed light on better understanding how the learning process of complex concepts and models works to create more sophisticated learning algorithms.&lt;/p&gt;
 </description>
     </item>
     
